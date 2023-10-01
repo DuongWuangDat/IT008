@@ -91,8 +91,9 @@ class Program
     {
         Console.Write("Nhap so luong hinh muon tao: ");
         int numberOfShapes = int.Parse(Console.ReadLine());
-    
+
         Random random = new Random();
+        List<Shape> listShapes = new List<Shape>();
 
         for (int i = 0; i < numberOfShapes; i++)
         {
@@ -107,8 +108,7 @@ class Program
                 double height = double.Parse(Console.ReadLine());
 
                 Rectangle rectangle = new Rectangle(shapeName, width, height);
-                Console.WriteLine(rectangle.Draw());
-                Console.WriteLine($"Dien tich: {rectangle.CalculateArea()}");
+                listShapes.Add(rectangle);
             }
             else if (shapeType == 2)
             {
@@ -116,8 +116,7 @@ class Program
                 double radius = double.Parse(Console.ReadLine());
 
                 Circle circle = new Circle(shapeName, radius);
-                Console.WriteLine(circle.Draw());
-                Console.WriteLine($"Dien tich: {circle.CalculateArea()}");
+                listShapes.Add(circle);
             }
             else if (shapeType == 3)
             {
@@ -128,11 +127,16 @@ class Program
                 Console.Write("Nhap canh 3 cua hinh tam giac: ");
                 double e3 = double.Parse(Console.ReadLine());
 
-
                 Triangle triangle = new Triangle(shapeName, e1, e2, e3);
-                Console.WriteLine(triangle.Draw());
-                Console.WriteLine($"Dien tich: {triangle.CalculateArea()}");
+                listShapes.Add(triangle);
             }
+        }
+
+        foreach (Shape shape in listShapes)
+        {
+            Console.WriteLine(shape.Draw());
+            Console.WriteLine($"Dien tich: {shape.CalculateArea()}");
+            Console.WriteLine();
         }
     }
 }

@@ -57,13 +57,38 @@ namespace Program
                         printedString = "Toan tu ban nhap vao khong dung!";
                         break;
                 }
-                Console.WriteLine(printedString);
+                Console.WriteLine(printedString + "\n\n");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
+            // Test Array.Sort();
+            finally
+            {
+                PhanSo[] mangPhanSo = new PhanSo[]
+                {
+                    new PhanSo(1,2),
+                    new PhanSo(3,2),
+                    new PhanSo(5,3),
+                    new PhanSo(6,11),
+                    new PhanSo(4,5),
+                };
+                Console.WriteLine("Mang ban dau: ");
+                foreach (var phanSo in mangPhanSo)
+                {
+                    Console.WriteLine(phanSo.ToString());
+                }
+
+                Array.Sort(mangPhanSo);
+
+                Console.WriteLine("Mang da sap xep: ");
+                foreach (var phanSo in mangPhanSo)
+                {
+                    Console.WriteLine(phanSo.ToString());
+                }
+            }
         }
     }
 }

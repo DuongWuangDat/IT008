@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nPhanSo
 {
-    internal class PhanSo
+    internal class PhanSo : IComparable<PhanSo>
     {
         private int tu;
         private int mau;
@@ -60,6 +60,17 @@ namespace nPhanSo
             tu /= gcd;
             mau /= gcd;
             return this;
+        }
+
+        // Phương thức so sánh phân số
+        public int CompareTo(PhanSo? other)
+        {
+            if (this > other)
+                return 1;
+            else if (this < other) 
+                return -1;
+            else 
+                return 0;
         }
 
         public PhanSo(int a = 0, int b = 1)

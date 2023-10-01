@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bai_1.4", "bai_1.4\bai_1.4.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bai_1.2", "bai_1.2\bai_1.2.csproj", "{ED0459A8-0573-42AA-81B4-5E708DB3D68D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bai_1.5", "bai_1.5\bai_1.5.csproj", "{035D10DF-3BE1-4D73-9B15-F45688ABBF21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bai_1.5", "bai_1.5\bai_1.5.csproj", "{035D10DF-3BE1-4D73-9B15-F45688ABBF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bai_1.6", "bai_1.6\bai_1.6.csproj", "{D56C0C2D-69D3-4660-AAA0-9A9B8A04CDE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bai_1.6", "bai_1.6\bai_1.6.csproj", "{D56C0C2D-69D3-4660-AAA0-9A9B8A04CDE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bai_1.3", "bai_1.3\bai_1.3.csproj", "{9B3AB5A1-892F-4C66-AB93-32193B6C1D68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D56C0C2D-69D3-4660-AAA0-9A9B8A04CDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56C0C2D-69D3-4660-AAA0-9A9B8A04CDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56C0C2D-69D3-4660-AAA0-9A9B8A04CDE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B3AB5A1-892F-4C66-AB93-32193B6C1D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B3AB5A1-892F-4C66-AB93-32193B6C1D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B3AB5A1-892F-4C66-AB93-32193B6C1D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B3AB5A1-892F-4C66-AB93-32193B6C1D68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

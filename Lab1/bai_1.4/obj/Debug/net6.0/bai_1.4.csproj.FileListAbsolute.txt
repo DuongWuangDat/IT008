@@ -1,0 +1,15 @@
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.csproj.AssemblyReference.cache
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.GeneratedMSBuildEditorConfig.editorconfig
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.AssemblyInfoInputs.cache
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.AssemblyInfo.cs
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.csproj.CoreCompileInputs.cache
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\bin\Debug\net6.0\bai_1.4.exe
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\bin\Debug\net6.0\bai_1.4.deps.json
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\bin\Debug\net6.0\bai_1.4.runtimeconfig.json
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\bin\Debug\net6.0\bai_1.4.dll
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\bin\Debug\net6.0\bai_1.4.pdb
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.dll
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\refint\bai_1.4.dll
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.pdb
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\bai_1.4.genruntimeconfig.cache
+D:\mon hoc\LTTQ\IT008\Lab1\bai_1.4\obj\Debug\net6.0\ref\bai_1.4.dll

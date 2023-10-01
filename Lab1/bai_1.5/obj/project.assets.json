@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\DAT\\.nuget\\packages\\": {}
+    "C:\\Users\\minhk\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DAT\\Desktop\\Visual Programming\\Lab01\\IT008\\Lab1\\bai_1.5\\bai_1.5.csproj",
+      "projectUniqueName": "B:\\study\\git_TH\\Lab1\\bai_1.5\\bai_1.5.csproj",
       "projectName": "bai_1.5",
-      "projectPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\Lab01\\IT008\\Lab1\\bai_1.5\\bai_1.5.csproj",
-      "packagesPath": "C:\\Users\\DAT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\Lab01\\IT008\\Lab1\\bai_1.5\\obj\\",
+      "projectPath": "B:\\study\\git_TH\\Lab1\\bai_1.5\\bai_1.5.csproj",
+      "packagesPath": "C:\\Users\\minhk\\.nuget\\packages\\",
+      "outputPath": "B:\\study\\git_TH\\Lab1\\bai_1.5\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\minhk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

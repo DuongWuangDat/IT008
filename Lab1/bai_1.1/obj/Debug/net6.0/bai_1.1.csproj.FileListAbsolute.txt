@@ -13,3 +13,17 @@ C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.1\obj\Debug\net6.
 C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.pdb
 C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.genruntimeconfig.cache
 C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.1\obj\Debug\net6.0\ref\bai_1.1.dll
+B:\study\git_TH\Lab1\bai_1.1\bin\Debug\net6.0\bai_1.1.exe
+B:\study\git_TH\Lab1\bai_1.1\bin\Debug\net6.0\bai_1.1.deps.json
+B:\study\git_TH\Lab1\bai_1.1\bin\Debug\net6.0\bai_1.1.runtimeconfig.json
+B:\study\git_TH\Lab1\bai_1.1\bin\Debug\net6.0\bai_1.1.dll
+B:\study\git_TH\Lab1\bai_1.1\bin\Debug\net6.0\bai_1.1.pdb
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.GeneratedMSBuildEditorConfig.editorconfig
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.AssemblyInfoInputs.cache
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.AssemblyInfo.cs
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.csproj.CoreCompileInputs.cache
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.dll
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\refint\bai_1.1.dll
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.pdb
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\bai_1.1.genruntimeconfig.cache
+B:\study\git_TH\Lab1\bai_1.1\obj\Debug\net6.0\ref\bai_1.1.dll

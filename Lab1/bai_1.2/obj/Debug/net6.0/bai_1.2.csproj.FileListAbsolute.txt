@@ -12,3 +12,17 @@ D:\Github\bai_tap_thuc_hanh_IT008\Lab1\bai_1.2\obj\Debug\net6.0\refint\bai_1.2.d
 D:\Github\bai_tap_thuc_hanh_IT008\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.pdb
 D:\Github\bai_tap_thuc_hanh_IT008\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.genruntimeconfig.cache
 D:\Github\bai_tap_thuc_hanh_IT008\Lab1\bai_1.2\obj\Debug\net6.0\ref\bai_1.2.dll
+B:\study\git_TH\Lab1\bai_1.2\bin\Debug\net6.0\bai_1.2.exe
+B:\study\git_TH\Lab1\bai_1.2\bin\Debug\net6.0\bai_1.2.deps.json
+B:\study\git_TH\Lab1\bai_1.2\bin\Debug\net6.0\bai_1.2.runtimeconfig.json
+B:\study\git_TH\Lab1\bai_1.2\bin\Debug\net6.0\bai_1.2.dll
+B:\study\git_TH\Lab1\bai_1.2\bin\Debug\net6.0\bai_1.2.pdb
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.GeneratedMSBuildEditorConfig.editorconfig
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.AssemblyInfoInputs.cache
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.AssemblyInfo.cs
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.csproj.CoreCompileInputs.cache
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.dll
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\refint\bai_1.2.dll
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.pdb
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\bai_1.2.genruntimeconfig.cache
+B:\study\git_TH\Lab1\bai_1.2\obj\Debug\net6.0\ref\bai_1.2.dll

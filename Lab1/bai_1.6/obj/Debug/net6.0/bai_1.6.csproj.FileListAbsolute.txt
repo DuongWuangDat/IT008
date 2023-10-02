@@ -1,0 +1,15 @@
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\bin\Debug\net6.0\bai_1.6.exe
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\bin\Debug\net6.0\bai_1.6.deps.json
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\bin\Debug\net6.0\bai_1.6.runtimeconfig.json
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\bin\Debug\net6.0\bai_1.6.dll
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\bin\Debug\net6.0\bai_1.6.pdb
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.csproj.AssemblyReference.cache
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.AssemblyInfoInputs.cache
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.AssemblyInfo.cs
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.csproj.CoreCompileInputs.cache
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.dll
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\refint\bai_1.6.dll
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.pdb
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\bai_1.6.genruntimeconfig.cache
+C:\Users\DAT\Desktop\Visual Programming\Lab01\IT008\Lab1\bai_1.6\obj\Debug\net6.0\ref\bai_1.6.dll

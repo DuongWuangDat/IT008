@@ -72,7 +72,7 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Silver;
-            this.btnCancel.Location = new System.Drawing.Point(343, 177);
+            this.btnCancel.Location = new System.Drawing.Point(337, 178);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 36);
             this.btnCancel.TabIndex = 3;

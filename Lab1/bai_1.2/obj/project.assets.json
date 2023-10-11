@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.2\\bai_1.2.csproj",
+      "projectUniqueName": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.2\\bai_1.2.csproj",
       "projectName": "bai_1.2",
-      "projectPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.2\\bai_1.2.csproj",
+      "projectPath": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.2\\bai_1.2.csproj",
       "packagesPath": "C:\\Users\\minhk\\.nuget\\packages\\",
-      "outputPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.2\\obj\\",
+      "outputPath": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\minhk\\AppData\\Roaming\\NuGet\\NuGet.Config",

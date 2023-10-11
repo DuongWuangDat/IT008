@@ -1,0 +1,10 @@
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\bin\Debug\2.4.exe.config
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\bin\Debug\2.4.exe
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\bin\Debug\2.4.pdb
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\2.4.csproj.AssemblyReference.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\_2._4.Form1.resources
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\_2._4.Properties.Resources.resources
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\2.4.csproj.GenerateResource.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\2.4.csproj.CoreCompileInputs.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\2.4.exe
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Lab2\2.4\obj\Debug\2.4.pdb

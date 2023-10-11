@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {}
+    "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.6\\bai_1.6.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {
+    "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.6\\bai_1.6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
+        "projectUniqueName": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.6\\bai_1.6.csproj",
         "projectName": "bai_1.6",
-        "projectPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
-        "packagesPath": "C:\\Users\\DAT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\obj\\",
+        "projectPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.6\\bai_1.6.csproj",
+        "packagesPath": "C:\\Users\\minhk\\.nuget\\packages\\",
+        "outputPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\minhk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

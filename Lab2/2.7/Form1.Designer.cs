@@ -82,7 +82,7 @@
             // 
             // txtDelay
             // 
-            this.txtDelay.Location = new System.Drawing.Point(323, 131);
+            this.txtDelay.Location = new System.Drawing.Point(311, 131);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(145, 22);
             this.txtDelay.TabIndex = 4;

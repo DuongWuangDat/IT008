@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\mon hoc\\LTTQ\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {}
+    "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {}
   },
   "projects": {
-    "D:\\mon hoc\\LTTQ\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {
+    "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\mon hoc\\LTTQ\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
+        "projectUniqueName": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
         "projectName": "bai_1.6",
-        "projectPath": "D:\\mon hoc\\LTTQ\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\mon hoc\\LTTQ\\IT008\\Lab1\\bai_1.6\\obj\\",
+        "projectPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\bai_1.6.csproj",
+        "packagesPath": "C:\\Users\\DAT\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DAT\\Desktop\\Visual Programming\\GitLabThucHanh\\IT008\\Lab1\\bai_1.6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

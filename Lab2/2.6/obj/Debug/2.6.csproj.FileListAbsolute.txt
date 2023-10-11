@@ -14,3 +14,18 @@ D:\mon hoc\LTTQ\IT008\Lab2\2.6\bin\Debug\EntityFramework.SqlServer.dll
 D:\mon hoc\LTTQ\IT008\Lab2\2.6\bin\Debug\EntityFramework.xml
 D:\mon hoc\LTTQ\IT008\Lab2\2.6\bin\Debug\EntityFramework.SqlServer.xml
 D:\mon hoc\LTTQ\IT008\Lab2\2.6\obj\Debug\2.6.csproj.CopyComplete
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\2.6.exe.config
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\2.6.exe
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\2.6.pdb
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\EntityFramework.dll
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\EntityFramework.SqlServer.dll
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\EntityFramework.xml
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\bin\Debug\EntityFramework.SqlServer.xml
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.csproj.AssemblyReference.cache
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\_2._6.Form1.resources
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\_2._6.Properties.Resources.resources
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.csproj.GenerateResource.cache
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.csproj.CoreCompileInputs.cache
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.csproj.CopyComplete
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.exe
+B:\study\lap trinh truc quan\Lap\Lab2\2.6\obj\Debug\2.6.pdb

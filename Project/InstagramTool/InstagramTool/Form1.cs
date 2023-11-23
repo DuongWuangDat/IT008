@@ -67,15 +67,25 @@ namespace InstagramTool
         {
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+            
             while (nextButton.Displayed && !IsStop)
             {
-                timButton.Click();
-                Thread.Sleep(2000);
+                try
+                {
+                    timButton.Click();
+                    
+                    Thread.Sleep(2000);
 
-                nextButton.Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                    nextButton.Click();
+                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                    nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                    timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                   
+                }
+                catch
+                {
+                    break;
+                }
             }
         }
     }

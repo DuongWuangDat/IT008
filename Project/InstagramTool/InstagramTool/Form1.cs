@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -111,6 +113,60 @@ namespace InstagramTool
                 driver.Quit();
             }
 
+        }
+
+        private void CrawlImage_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Prompt the user to choose a folder to store the images
+                using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+                {
+                    DialogResult result = folderDialog.ShowDialog();
+                    if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
+                    {
+                        MessageBox.Show("Invalid folder selection or folder not chosen.");
+                        return;
+                    }
+
+                    // Navigate to the Instagram user's profile
+                    driver.Navigate().GoToUrl(urlbox.Text);
+                    Thread.Sleep(5000);
+
+                    // Locate the container element that holds all the images in the post
+                    IList<IWebElement> imageElements = driver.FindElements(By.XPath("//article//img"));
+
+                    // Extract image URLs
+                    List<string> imageUrls = new List<string>();
+                    foreach (var imageElement in imageElements)
+                    {
+                        string imageUrl = imageElement.GetAttribute("src");
+                        if (!string.IsNullOrEmpty(imageUrl))
+                        {
+                            imageUrls.Add(imageUrl);
+                        }
+                    }
+
+                    // Download and save images to the selected folder
+                    int imageCount = 1;
+                    foreach (var imageUrl in imageUrls)
+                    {
+                        using (WebClient client = new WebClient())
+                        {
+                            string fileName = $"image_{imageCount}.jpg"; // Naming the images as image_1.jpg, image_2.jpg, ...
+                            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                            client.DownloadFile(new Uri(imageUrl), filePath);
+                            imageCount++;
+                        }
+                    }
+
+                    MessageBox.Show("Images downloaded successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
     }
 }

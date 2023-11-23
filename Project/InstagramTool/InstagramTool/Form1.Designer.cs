@@ -39,7 +39,7 @@
             this.urlbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.autofollowbtn = new System.Windows.Forms.Button();
-            this.crawlimagebtn = new System.Windows.Forms.Button();
+            this.CrawlImage_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -149,22 +149,23 @@
             this.autofollowbtn.Text = "AutoFollow";
             this.autofollowbtn.UseVisualStyleBackColor = false;
             // 
-            // crawlimagebtn
+            // CrawlImage_btn
             // 
-            this.crawlimagebtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.crawlimagebtn.Location = new System.Drawing.Point(412, 375);
-            this.crawlimagebtn.Name = "crawlimagebtn";
-            this.crawlimagebtn.Size = new System.Drawing.Size(254, 61);
-            this.crawlimagebtn.TabIndex = 11;
-            this.crawlimagebtn.Text = "Crawl Image";
-            this.crawlimagebtn.UseVisualStyleBackColor = false;
+            this.CrawlImage_btn.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.CrawlImage_btn.Location = new System.Drawing.Point(412, 375);
+            this.CrawlImage_btn.Name = "CrawlImage_btn";
+            this.CrawlImage_btn.Size = new System.Drawing.Size(254, 61);
+            this.CrawlImage_btn.TabIndex = 11;
+            this.CrawlImage_btn.Text = "Crawl Image";
+            this.CrawlImage_btn.UseVisualStyleBackColor = false;
+            this.CrawlImage_btn.Click += new System.EventHandler(this.CrawlImage_btn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 470);
-            this.Controls.Add(this.crawlimagebtn);
+            this.Controls.Add(this.CrawlImage_btn);
             this.Controls.Add(this.autofollowbtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.urlbox);
@@ -197,7 +198,7 @@
         private System.Windows.Forms.TextBox urlbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button autofollowbtn;
-        private System.Windows.Forms.Button crawlimagebtn;
+        private System.Windows.Forms.Button CrawlImage_btn;
     }
 }
 

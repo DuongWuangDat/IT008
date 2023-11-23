@@ -17,6 +17,7 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         IWebDriver driver;
+        bool IsStop = false;
         public Form1()
         {
             InitializeComponent();
@@ -25,26 +26,40 @@ namespace InstagramTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.instagram.com/");
+            try
+            {
+                driver = new ChromeDriver();
+                driver.Navigate().GoToUrl("https://www.instagram.com/");
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            IWebElement user = driver.FindElement(By.Name("username"));
-            IWebElement pass = driver.FindElement(By.Name("password"));
-            IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
-            user.SendKeys(username_box.Text);
-            pass.SendKeys(password_box.Text);
-            Thread.Sleep(2000);
-            login.Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                IWebElement user = driver.FindElement(By.Name("username"));
+                IWebElement pass = driver.FindElement(By.Name("password"));
+                IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
+                user.SendKeys(username_box.Text);
+                pass.SendKeys(password_box.Text);
+                Thread.Sleep(2000);
+                login.Click();
+            }
+            catch
+            {
+                MessageBox.Show("Xay ra loi");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            driver.Navigate().GoToUrl("https://www.instagram.com/taylorswift/");
-            IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-            string userID = divElement.GetAttribute("id");
-            IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-            selectPost.Click();
+            try
+            {
+                driver.Navigate().GoToUrl(urlbox.Text);
+                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
+                string userID = divElement.GetAttribute("id");
+                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
+                selectPost.Click();
+            }
+            catch
+            {
+                MessageBox.Show("Xay ra loi");
+            }
             
         }
 
@@ -52,10 +67,11 @@ namespace InstagramTool
         {
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-            while (nextButton.Displayed)
+            while (nextButton.Displayed && !IsStop)
             {
                 timButton.Click();
                 Thread.Sleep(2000);
+
                 nextButton.Click();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));

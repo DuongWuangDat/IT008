@@ -90,7 +90,7 @@ namespace _2._6
             sv.DisplayName = NameTxT.Text;
             int? idLop = null;
             Lop lop = context.Lop.Where(p => p.DisplayName == ClassTxT.Text).FirstOrDefault();
-            idLop = lop.ID;
+            cv xidLop = lop.ID;
             sv.IDLop = idLop;
             sv.BirthDay = BirthDay.Value;
             sv.Gender = namButton.Checked;

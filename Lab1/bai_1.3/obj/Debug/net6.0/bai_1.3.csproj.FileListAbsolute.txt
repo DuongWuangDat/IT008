@@ -1,14 +1,14 @@
-B:\study\git_TH\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.exe
-B:\study\git_TH\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.deps.json
-B:\study\git_TH\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.runtimeconfig.json
-B:\study\git_TH\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.dll
-B:\study\git_TH\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.pdb
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.GeneratedMSBuildEditorConfig.editorconfig
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.AssemblyInfoInputs.cache
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.AssemblyInfo.cs
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.csproj.CoreCompileInputs.cache
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.dll
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\refint\bai_1.3.dll
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.pdb
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.genruntimeconfig.cache
-B:\study\git_TH\Lab1\bai_1.3\obj\Debug\net6.0\ref\bai_1.3.dll
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.exe
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.deps.json
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.runtimeconfig.json
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.dll
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\bin\Debug\net6.0\bai_1.3.pdb
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.GeneratedMSBuildEditorConfig.editorconfig
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.AssemblyInfoInputs.cache
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.AssemblyInfo.cs
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.csproj.CoreCompileInputs.cache
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.dll
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\refint\bai_1.3.dll
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.pdb
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\bai_1.3.genruntimeconfig.cache
+B:\study\lap trinh truc quan\Lap\Lab1\bai_1.3\obj\Debug\net6.0\ref\bai_1.3.dll

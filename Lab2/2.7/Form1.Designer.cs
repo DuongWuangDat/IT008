@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+       private void InitializeComponent()
         {
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnRestart = new System.Windows.Forms.Button();
@@ -39,9 +39,9 @@
             // btnShutdown
             // 
             this.btnShutdown.BackColor = System.Drawing.Color.Red;
-            this.btnShutdown.Location = new System.Drawing.Point(142, 41);
+            this.btnShutdown.Location = new System.Drawing.Point(162, 41);
             this.btnShutdown.Name = "btnShutdown";
-            this.btnShutdown.Size = new System.Drawing.Size(104, 35);
+            this.btnShutdown.Size = new System.Drawing.Size(104, 32);
             this.btnShutdown.TabIndex = 0;
             this.btnShutdown.Text = "Shutdown";
             this.btnShutdown.UseVisualStyleBackColor = false;
@@ -50,9 +50,9 @@
             // btnRestart
             // 
             this.btnRestart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnRestart.Location = new System.Drawing.Point(337, 41);
+            this.btnRestart.Location = new System.Drawing.Point(343, 41);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(100, 35);
+            this.btnRestart.Size = new System.Drawing.Size(100, 32);
             this.btnRestart.TabIndex = 1;
             this.btnRestart.Text = "Restart";
             this.btnRestart.UseVisualStyleBackColor = false;
@@ -61,9 +61,9 @@
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Yellow;
-            this.btnLogout.Location = new System.Drawing.Point(550, 41);
+            this.btnLogout.Location = new System.Drawing.Point(525, 41);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(90, 35);
+            this.btnLogout.Size = new System.Drawing.Size(90, 32);
             this.btnLogout.TabIndex = 2;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -72,7 +72,7 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Silver;
-            this.btnCancel.Location = new System.Drawing.Point(337, 178);
+            this.btnCancel.Location = new System.Drawing.Point(343, 190);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 36);
             this.btnCancel.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             // txtDelay
             // 
-            this.txtDelay.Location = new System.Drawing.Point(311, 131);
+            this.txtDelay.Location = new System.Drawing.Point(323, 131);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(145, 22);
             this.txtDelay.TabIndex = 4;
@@ -123,8 +123,5 @@
         private System.Windows.Forms.TextBox txtDelay;
         private System.Windows.Forms.Label label1;
     }
-
-
-
 }
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.3\\bai_1.3.csproj": {}
+    "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.3\\bai_1.3.csproj": {}
   },
   "projects": {
-    "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.3\\bai_1.3.csproj": {
+    "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.3\\bai_1.3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.3\\bai_1.3.csproj",
+        "projectUniqueName": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.3\\bai_1.3.csproj",
         "projectName": "bai_1.3",
-        "projectPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.3\\bai_1.3.csproj",
+        "projectPath": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.3\\bai_1.3.csproj",
         "packagesPath": "C:\\Users\\minhk\\.nuget\\packages\\",
-        "outputPath": "B:\\study\\lap trinh truc quan\\Lap_TH\\Lab1\\bai_1.3\\obj\\",
+        "outputPath": "B:\\study\\lap trinh truc quan\\Lap\\Lab1\\bai_1.3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\minhk\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -61,7 +61,7 @@ namespace InstagramTool
             {
                 MessageBox.Show("Xay ra loi");
             }
-            
+
         }
 
         private void autotimbtn_Click(object sender, EventArgs e)
@@ -69,27 +69,19 @@ namespace InstagramTool
             // First load
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-            IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
             while (nextButton.Displayed && !IsStop)
             {
                 try
                 {
-                    if(isLiked.GetAttribute("aria-label")== "Unlike")
-                    {
-
-                    }
-                    else
-                    {
-                        timButton.Click();
-                    }
-                    
+                    timButton.Click();
                     Thread.Sleep(2000);
                     nextButton.Click();
-                    
+
                     nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
 
                     timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                   
+
                 }
                 catch (NoSuchElementException)
                 {
@@ -106,7 +98,7 @@ namespace InstagramTool
                 }
                 catch
                 {
-                    
+
                     break;
                 }
             }
@@ -114,11 +106,11 @@ namespace InstagramTool
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(driver!= null)
+            if (driver != null)
             {
                 driver.Quit();
             }
-            
+
         }
     }
 }

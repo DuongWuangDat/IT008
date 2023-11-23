@@ -69,12 +69,20 @@ namespace InstagramTool
             // First load
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-            
+            IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
             while (nextButton.Displayed && !IsStop)
             {
                 try
                 {
-                    timButton.Click();
+                    if(isLiked.GetAttribute("aria-label")== "Unlike")
+                    {
+
+                    }
+                    else
+                    {
+                        timButton.Click();
+                    }
+                    
                     Thread.Sleep(2000);
                     nextButton.Click();
                     

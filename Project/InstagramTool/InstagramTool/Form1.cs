@@ -88,5 +88,14 @@ namespace InstagramTool
                 }
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(driver!= null)
+            {
+                driver.Quit();
+            }
+            
+        }
     }
 }

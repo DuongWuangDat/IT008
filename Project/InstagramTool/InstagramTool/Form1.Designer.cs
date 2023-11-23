@@ -38,6 +38,8 @@
             this.autocmtbtn = new System.Windows.Forms.Button();
             this.urlbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.autofollowbtn = new System.Windows.Forms.Button();
+            this.crawlimagebtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -137,11 +139,33 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Url";
             // 
+            // autofollowbtn
+            // 
+            this.autofollowbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.autofollowbtn.Location = new System.Drawing.Point(88, 375);
+            this.autofollowbtn.Name = "autofollowbtn";
+            this.autofollowbtn.Size = new System.Drawing.Size(254, 61);
+            this.autofollowbtn.TabIndex = 10;
+            this.autofollowbtn.Text = "AutoFollow";
+            this.autofollowbtn.UseVisualStyleBackColor = false;
+            // 
+            // crawlimagebtn
+            // 
+            this.crawlimagebtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.crawlimagebtn.Location = new System.Drawing.Point(412, 375);
+            this.crawlimagebtn.Name = "crawlimagebtn";
+            this.crawlimagebtn.Size = new System.Drawing.Size(254, 61);
+            this.crawlimagebtn.TabIndex = 11;
+            this.crawlimagebtn.Text = "Crawl Image";
+            this.crawlimagebtn.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 470);
+            this.Controls.Add(this.crawlimagebtn);
+            this.Controls.Add(this.autofollowbtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.urlbox);
             this.Controls.Add(this.autocmtbtn);
@@ -172,6 +196,8 @@
         private System.Windows.Forms.Button autocmtbtn;
         private System.Windows.Forms.TextBox urlbox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button autofollowbtn;
+        private System.Windows.Forms.Button crawlimagebtn;
     }
 }
 

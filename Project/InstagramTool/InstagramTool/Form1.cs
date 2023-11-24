@@ -8,12 +8,15 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+
 namespace InstagramTool
 {
     public partial class Form1 : Form
@@ -114,59 +117,83 @@ namespace InstagramTool
             }
 
         }
-
         private void CrawlImage_btn_Click(object sender, EventArgs e)
-        {
-            try
+        {           
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            DialogResult result = folderDialog.ShowDialog();
+
+            if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
             {
-                // Prompt the user to choose a folder to store the images
-                using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+                MessageBox.Show("Invalid folder selection or folder not chosen.");
+                return;
+            }
+
+            driver.Navigate().GoToUrl(urlbox.Text);
+            Thread.Sleep(5000);
+
+            IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+            int postCount = 1;
+            postElements[0].Click();
+
+            IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+            IWebElement nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));  
+            while (nextButton.Displayed && !IsStop)
+            {
+                int imageCount = 1;
+                if (postCount == 1)
                 {
-                    DialogResult result = folderDialog.ShowDialog();
-                    if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
+                    try
                     {
-                        MessageBox.Show("Invalid folder selection or folder not chosen.");
-                        return;
+                        nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
                     }
-
-                    // Navigate to the Instagram user's profile
-                    driver.Navigate().GoToUrl(urlbox.Text);
-                    Thread.Sleep(5000);
-
-                    // Locate the container element that holds all the images in the post
-                    IList<IWebElement> imageElements = driver.FindElements(By.XPath("//article//img"));
-
-                    // Extract image URLs
-                    List<string> imageUrls = new List<string>();
-                    foreach (var imageElement in imageElements)
+                    catch
                     {
-                        string imageUrl = imageElement.GetAttribute("src");
-                        if (!string.IsNullOrEmpty(imageUrl))
-                        {
-                            imageUrls.Add(imageUrl);
-                        }
+                        
                     }
-
-                    // Download and save images to the selected folder
-                    int imageCount = 1;
-                    foreach (var imageUrl in imageUrls)
-                    {
-                        using (WebClient client = new WebClient())
-                        {
-                            string fileName = $"image_{imageCount}.jpg"; // Naming the images as image_1.jpg, image_2.jpg, ...
-                            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                            client.DownloadFile(new Uri(imageUrl), filePath);
-                            imageCount++;
-                        }
-                    }
-
-                    MessageBox.Show("Images downloaded successfully!");
                 }
+                else
+                {
+                    nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div[1]/div[2]/div/button"));
+                }
+                while (nextImgButton.Displayed && !IsStop) 
+                {                       
+                        //class x5yr21d xu96u03 x10l6tqk x13vifvy x87ps6o xh8yej3
+                        IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
+                        foreach (var imageElement in imageElements)
+                        {
+                            string imageUrl = imageElement.GetAttribute("src");
+                            if (!string.IsNullOrEmpty(imageUrl))
+                            {
+                                using (WebClient client = new WebClient())
+                                {
+                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                    client.DownloadFile(new Uri(imageUrl), filePath);
+                                    imageCount++;
+                                    break;
+                                }
+                            }
+                        }
+                        nextImgButton.Click();
+                        Thread.Sleep(3000);
+                    try
+                    {
+                        nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
+                    }
+                    catch { break; }
+                }
+                nextButton.Click();
+                Thread.Sleep(3000);
+                try
+                {
+                    nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                }
+                catch { break; }
+                postCount++;
+                                
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
+
+            MessageBox.Show("Crawling successfully");
         }
     }
-}
+} 

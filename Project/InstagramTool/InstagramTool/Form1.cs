@@ -136,62 +136,7 @@ namespace InstagramTool
             postElements[0].Click();
 
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-            IWebElement nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));  
-            while (nextButton.Displayed && !IsStop)
-            {
-                int imageCount = 1;
-                if (postCount == 1)
-                {
-                    try
-                    {
-                        nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
-                    }
-                    catch
-                    {
-                        
-                    }
-                }
-                else
-                {
-                    nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div[1]/div[2]/div/button"));
-                }
-                while (nextImgButton.Displayed && !IsStop) 
-                {                       
-                        //class x5yr21d xu96u03 x10l6tqk x13vifvy x87ps6o xh8yej3
-                        IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
-                        foreach (var imageElement in imageElements)
-                        {
-                            string imageUrl = imageElement.GetAttribute("src");
-                            if (!string.IsNullOrEmpty(imageUrl))
-                            {
-                                using (WebClient client = new WebClient())
-                                {
-                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
-                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                                    client.DownloadFile(new Uri(imageUrl), filePath);
-                                    imageCount++;
-                                    break;
-                                }
-                            }
-                        }
-                        nextImgButton.Click();
-                        Thread.Sleep(3000);
-                    try
-                    {
-                        nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
-                    }
-                    catch { break; }
-                }
-                nextButton.Click();
-                Thread.Sleep(3000);
-                try
-                {
-                    nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                }
-                catch { break; }
-                postCount++;
-                                
-            }
+            IWebElement nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));             
 
             MessageBox.Show("Crawling successfully");
         }

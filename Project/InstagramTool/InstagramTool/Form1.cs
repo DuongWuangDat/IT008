@@ -112,5 +112,12 @@ namespace InstagramTool
             }
 
         }
+
+        private void autocmtbtn_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2(this, username_box.Text, password_box.Text);
+            this.Hide();
+            f2.Show();
+        }
     }
 }

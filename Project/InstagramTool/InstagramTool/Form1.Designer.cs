@@ -120,6 +120,7 @@
             this.autocmtbtn.TabIndex = 7;
             this.autocmtbtn.Text = "AutoComment";
             this.autocmtbtn.UseVisualStyleBackColor = false;
+            this.autocmtbtn.Click += new System.EventHandler(this.autocmtbtn_Click);
             // 
             // urlbox
             // 

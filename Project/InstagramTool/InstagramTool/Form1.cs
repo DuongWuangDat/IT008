@@ -17,7 +17,6 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         IWebDriver driver;
-        bool IsStop = false;
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace InstagramTool
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 IWebElement user = driver.FindElement(By.Name("username"));
                 IWebElement pass = driver.FindElement(By.Name("password"));
                 IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
@@ -69,26 +68,34 @@ namespace InstagramTool
             // First load
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-
-            while (nextButton.Displayed && !IsStop)
+            IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+            while (nextButton.Displayed)
             {
                 try
                 {
-                    timButton.Click();
+                    
+                    if(isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                    {
+                        timButton.Click();
+                    }
+                    
                     Thread.Sleep(2000);
                     nextButton.Click();
 
                     nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
 
                     timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                    isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
 
                 }
                 catch (NoSuchElementException)
                 {
                     try
                     {
-                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                        timButton.Click();
+                        if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                        {
+                            timButton.Click();
+                        }
                     }
                     catch
                     {

@@ -96,7 +96,7 @@ namespace InstagramTool
                             try
                             {
                                 var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                Thread.Sleep(1000);
+                                Thread.Sleep(500);
                                 commentbox.SendKeys(comment);
                             }
                             catch
@@ -104,7 +104,7 @@ namespace InstagramTool
                                 try
                                 {
                                     var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(500);
                                     commentbox.SendKeys(comment);
                                 }
                                 catch
@@ -112,18 +112,21 @@ namespace InstagramTool
                                     try
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        Thread.Sleep(1000);
+                                        Thread.Sleep(500);
                                         commentbox.SendKeys(comment);
                                     }
                                     catch
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        Thread.Sleep(1000);
+                                        Thread.Sleep(500);
                                         commentbox.SendKeys(comment);
                                     }
 
-
                                 }
+                            }
+                            finally
+                            {
+                                Thread.Sleep(500);
                             }
 
                             Thread.Sleep(500);
@@ -139,13 +142,13 @@ namespace InstagramTool
                                 btnpost.Click();
                                 Thread.Sleep(2000);
                             }
-
+                            finally
+                            {
+                                Thread.Sleep(500);
+                            }
                             driver.Navigate().Back();
                             Thread.Sleep(2000);
                         }
-                       
-                    
-
                     }
                     try
                     {

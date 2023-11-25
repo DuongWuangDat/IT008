@@ -28,7 +28,6 @@ namespace InstagramTool
             InitializeComponent();
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -36,7 +35,7 @@ namespace InstagramTool
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
                 IWebElement user = driver.FindElement(By.Name("username"));
                 IWebElement pass = driver.FindElement(By.Name("password"));
                 IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
@@ -98,6 +97,8 @@ namespace InstagramTool
                 {
                     try
                     {
+                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
                         if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                         {
                             timButton.Click();
@@ -105,7 +106,7 @@ namespace InstagramTool
                     }
                     catch
                     {
-                        Console.WriteLine("Element not found");
+                        MessageBox.Show("Element not found");
                     }
                     break;
                 }

@@ -88,38 +88,40 @@ namespace InstagramTool
                         if (y >= x)
                         {
                             x++;
-                            post.Click();
-                            Thread.Sleep(2000);
+                            try { post.Click(); }
+                            catch {  }
+                            finally { Thread.Sleep(2000); }
+                          
                             random = new Random();
                             int i = random.Next(0, ListCmt.Count);
                             string comment = ListCmt[i].text;
                             try
                             {
                                 var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                Thread.Sleep(500);
                                 commentbox.SendKeys(comment);
+                                Thread.Sleep(500);
                             }
                             catch
                             {
                                 try
                                 {
                                     var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                    Thread.Sleep(500);
                                     commentbox.SendKeys(comment);
+                                    Thread.Sleep(500);
                                 }
                                 catch
                                 {
                                     try
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        Thread.Sleep(500);
                                         commentbox.SendKeys(comment);
+                                        Thread.Sleep(500);
                                     }
                                     catch
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        Thread.Sleep(500);
                                         commentbox.SendKeys(comment);
+                                        Thread.Sleep(500);
                                     }
 
                                 }
@@ -146,9 +148,24 @@ namespace InstagramTool
                             {
                                 Thread.Sleep(500);
                             }
-                            driver.Navigate().Back();
-                            Thread.Sleep(2000);
-                        }
+                            try
+                            {
+                                var close = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[2]"));
+                                close.Click();
+                                Thread.Sleep(500);
+                            }
+                              catch
+                            {
+                                var close = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[2]"));
+                                close.Click();
+                                Thread.Sleep(500);
+                            }  
+                            finally
+                            {
+                                Thread.Sleep(100);
+                            }
+
+                            }
                     }
                     try
                     {

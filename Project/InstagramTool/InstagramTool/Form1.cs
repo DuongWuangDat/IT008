@@ -23,10 +23,13 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         IWebDriver driver;
+        public static string username;
+        public static string password;
+
+
         public Form1()
         {
             InitializeComponent();
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -78,12 +81,12 @@ namespace InstagramTool
             {
                 try
                 {
-                    
-                    if(isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+
+                    if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                     {
                         timButton.Click();
                     }
-                    
+
                     Thread.Sleep(2000);
                     nextButton.Click();
 
@@ -258,6 +261,28 @@ namespace InstagramTool
 }
                 }
             }
+        }
+
+        private void autofollowbtn_Click(object sender, EventArgs e)
+        {
+            if (username == null || username == "" || password == null || password == "")
+                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+            else
+            {
+                AutoFollow autoFollow = new AutoFollow();
+                autoFollow.Show(this);
+                this.Hide();
+            }
+        }
+
+        private void username_box_TextChanged(object sender, EventArgs e)
+        {
+            username = username_box.Text;
+        }
+
+        private void password_box_TextChanged(object sender, EventArgs e)
+        {
+            password = password_box.Text;
         }
     }
 } 

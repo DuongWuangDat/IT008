@@ -314,9 +314,18 @@ namespace InstagramTool
 
         private void autocmtbtn_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2(this, username_box.Text, password_box.Text);
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
+            else
+            {
+            Form2 f2 = new Form2(this,driver);
             this.Hide();
             f2.Show();
+            }    
+           
         }
     }
 } 

@@ -1,17 +1,23 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools.V117.Debugger;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+
 namespace InstagramTool
 {
     public partial class Form1 : Form
@@ -25,7 +31,6 @@ namespace InstagramTool
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -124,6 +129,139 @@ namespace InstagramTool
             }
 
         }
+        private void CrawlImage_btn_Click(object sender, EventArgs e)
+        {           
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            DialogResult result = folderDialog.ShowDialog();
+
+            if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
+            {
+                MessageBox.Show("Invalid folder selection or folder not chosen.");
+                return;
+            }
+
+            driver.Navigate().GoToUrl(urlbox.Text);
+            Thread.Sleep(5000);
+            int postCount = 1;
+            IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+            postElements[0].Click();
+            try
+            {
+                postCount = 1;
+                //Nếu không phải post cuối cùng
+                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                while(nextButton.Displayed)
+                {
+                    try
+                    {
+                        EachImage(postCount, folderDialog);
+                        nextButton.Click();
+                        Thread.Sleep(2000);
+                        postCount++;
+                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                    }
+                    catch(NoSuchElementException) 
+                    {
+                        //Post cuối cùng
+                        EachImage(postCount, folderDialog);
+                        SendKeys.Send("{ESC}");
+                        MessageBox.Show("Crawling successfully");
+                        break;
+                    }
+                }
+            }
+            catch(NoSuchElementException)
+            {
+                //Post cuối cùng
+                EachImage(postCount, folderDialog);
+                SendKeys.Send("{ESC}");
+                MessageBox.Show("Crawling successfully");
+            }    
+        }
+    
+        public void EachImage(int postCount, FolderBrowserDialog folderDialog)
+        {
+            int imageCount = 1;
+            try
+            {
+                IWebElement nextImgButton;
+                if (postCount == 1)
+                {
+                    nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
+                }
+                else
+                    nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
+
+                while (nextImgButton.Displayed)
+                {
+                    try
+                    {
+                        //IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
+                        //foreach (var imageElement in imageElements)
+                        //{
+                        //    string imageUrl = imageElement.GetAttribute("src");
+                        //    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150"))
+                        //    {
+                        //        using (WebClient client = new WebClient())
+                        //        {
+                        //            string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                        //            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                        //            client.DownloadFile(new Uri(imageUrl), filePath);
+                        //            imageCount++;
+                        //        }
+                        //    }
+                        //}
+                        nextImgButton.Click();
+                        Thread.Sleep(1000);
+                        //post đầu tiên
+                        if (postCount == 1)
+                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
+                        else
+                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        //Ảnh cuối cùng
+                        IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//img"));
+                        foreach (var imageElement in imageElements)
+                        {
+                            string imageUrl = imageElement.GetAttribute("src");
+                            if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
+                            {
+                                using (WebClient client = new WebClient())
+                                {
+                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                    client.DownloadFile(new Uri(imageUrl), filePath);
+                                    imageCount++;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+        }
+            catch 
+            {
+                IWebElement a = driver.FindElement(By.XPath("//div[@role='dialog']//img"));
+                //Co duy nhat 1 anh
+                IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
+                foreach (var imageElement in imageElements)
+                {
+                    string imageUrl = imageElement.GetAttribute("src");
+                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150"))
+                    {
+                        using (WebClient client = new WebClient())
+                        {
+                            string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                            client.DownloadFile(new Uri(imageUrl), filePath);
+                            imageCount++;
+                        }
+}
+                }
+            }
+        }
 
         private void autofollowbtn_Click(object sender, EventArgs e)
         {
@@ -147,4 +285,4 @@ namespace InstagramTool
             password = password_box.Text;
         }
     }
-}
+} 

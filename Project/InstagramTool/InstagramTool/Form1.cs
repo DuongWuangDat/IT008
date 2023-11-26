@@ -22,7 +22,7 @@ namespace InstagramTool
 {
     public partial class Form1 : Form
     {
-        static IWebDriver driver;
+        public static IWebDriver driver;
         bool IsLogin=false;
         public static string username;
         public static string password;
@@ -326,6 +326,22 @@ namespace InstagramTool
             f2.Show();
             }    
            
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (driver == null || driver.WindowHandles.Count == 0)
+                {
+                    IsLogin = false;
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
+            
         }
     }
 } 

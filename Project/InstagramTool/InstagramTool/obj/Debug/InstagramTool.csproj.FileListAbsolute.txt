@@ -40,3 +40,4 @@ D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\I
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources

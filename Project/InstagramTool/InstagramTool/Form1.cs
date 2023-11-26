@@ -23,6 +23,7 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         static IWebDriver driver;
+        bool IsLogin=false;
         public static string username;
         public static string password;
 
@@ -46,6 +47,17 @@ namespace InstagramTool
                 pass.SendKeys(password_box.Text);
                 Thread.Sleep(2000);
                 login.Click();
+                Thread.Sleep(5000);
+                try
+                {
+                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save Info')]"));
+                    IsLogin = true;
+                }
+                catch
+                {
+                    IsLogin = false;
+                }
+                Console.WriteLine(IsLogin);
             }
             catch
             {
@@ -74,6 +86,11 @@ namespace InstagramTool
         private void autotimbtn_Click(object sender, EventArgs e)
         {
             // First load
+            if(IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
             IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
@@ -130,7 +147,12 @@ namespace InstagramTool
 
         }
         private void CrawlImage_btn_Click(object sender, EventArgs e)
-        {           
+        {
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             DialogResult result = folderDialog.ShowDialog();
 
@@ -265,6 +287,11 @@ namespace InstagramTool
 
         private void autofollowbtn_Click(object sender, EventArgs e)
         {
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
             if (username == null || username == "" || password == null || password == "")
                 MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
             else

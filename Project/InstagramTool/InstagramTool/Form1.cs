@@ -57,11 +57,11 @@ namespace InstagramTool
                 {
                     IsLogin = false;
                 }
-                Console.WriteLine(IsLogin);
+               // Console.WriteLine(IsLogin);
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
         }
 
@@ -78,7 +78,7 @@ namespace InstagramTool
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
 
         }
@@ -88,7 +88,7 @@ namespace InstagramTool
             // First load
             if(IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
@@ -150,7 +150,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();

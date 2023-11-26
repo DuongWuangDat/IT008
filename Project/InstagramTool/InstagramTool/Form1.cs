@@ -22,7 +22,7 @@ namespace InstagramTool
 {
     public partial class Form1 : Form
     {
-        IWebDriver driver;
+        static IWebDriver driver;
         public static string username;
         public static string password;
 

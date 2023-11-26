@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Project",
+    "\\Project\\InstagramTool",
+    "\\Project\\InstagramTool\\InstagramTool"
   ],
   "SelectedNode": "\\InstagramTool.sln",
   "PreviewInSolutionExplorer": false

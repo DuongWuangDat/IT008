@@ -60,6 +60,7 @@
             this.username_box.Name = "username_box";
             this.username_box.Size = new System.Drawing.Size(268, 30);
             this.username_box.TabIndex = 1;
+            this.username_box.TextChanged += new System.EventHandler(this.username_box_TextChanged);
             // 
             // label1
             // 
@@ -78,6 +79,7 @@
             this.password_box.Name = "password_box";
             this.password_box.Size = new System.Drawing.Size(268, 30);
             this.password_box.TabIndex = 3;
+            this.password_box.TextChanged += new System.EventHandler(this.password_box_TextChanged);
             // 
             // label2
             // 
@@ -148,6 +150,7 @@
             this.autofollowbtn.TabIndex = 10;
             this.autofollowbtn.Text = "AutoFollow";
             this.autofollowbtn.UseVisualStyleBackColor = false;
+            this.autofollowbtn.Click += new System.EventHandler(this.autofollowbtn_Click);
             // 
             // crawlimagebtn
             // 

@@ -289,7 +289,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             if (username == null || username == "" || password == null || password == "")
@@ -316,7 +316,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             else

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V117.Debugger;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         public static IWebDriver driver;
-        bool IsLogin=false;
+        public static bool IsLogin = false;
         public static string username;
         public static string password;
 
@@ -36,7 +37,17 @@ namespace InstagramTool
         {
             try
             {
-                driver = new ChromeDriver();
+                if (username == null || username == "" || password == null || password == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+                    return;
+                }
+                ChromeOptions options = new ChromeOptions();
+                options.SetLoggingPreference("browser", LogLevel.Off);
+                options.SetLoggingPreference("driver", LogLevel.Off);
+                options.SetLoggingPreference("performance", LogLevel.Off);
+                driver = new ChromeDriver(options);
+                
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
@@ -57,7 +68,6 @@ namespace InstagramTool
                 {
                     IsLogin = false;
                 }
-               // Console.WriteLine(IsLogin);
             }
             catch
             {
@@ -86,7 +96,7 @@ namespace InstagramTool
         private void autotimbtn_Click(object sender, EventArgs e)
         {
             // First load
-            if(IsLogin == false)
+            if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
                 return;
@@ -172,7 +182,7 @@ namespace InstagramTool
                 postCount = 1;
                 //Nếu không phải post cuối cùng
                 IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                while(nextButton.Displayed)
+                while (nextButton.Displayed)
                 {
                     try
                     {
@@ -182,7 +192,7 @@ namespace InstagramTool
                         postCount++;
                         nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
                     }
-                    catch(NoSuchElementException) 
+                    catch (NoSuchElementException)
                     {
                         //Post cuối cùng
                         EachImage(postCount, folderDialog);
@@ -192,15 +202,15 @@ namespace InstagramTool
                     }
                 }
             }
-            catch(NoSuchElementException)
+            catch (NoSuchElementException)
             {
                 //Post cuối cùng
                 EachImage(postCount, folderDialog);
                 SendKeys.Send("{ESC}");
                 MessageBox.Show("Crawling successfully");
-            }    
+            }
         }
-    
+
         public void EachImage(int postCount, FolderBrowserDialog folderDialog)
         {
             int imageCount = 1;
@@ -262,8 +272,8 @@ namespace InstagramTool
                         break;
                     }
                 }
-        }
-            catch 
+            }
+            catch
             {
                 IWebElement a = driver.FindElement(By.XPath("//div[@role='dialog']//img"));
                 //Co duy nhat 1 anh
@@ -280,7 +290,7 @@ namespace InstagramTool
                             client.DownloadFile(new Uri(imageUrl), filePath);
                             imageCount++;
                         }
-}
+                    }
                 }
             }
         }
@@ -292,8 +302,7 @@ namespace InstagramTool
                 MessageBox.Show("Chưa đăng nhập");
                 return;
             }
-            if (username == null || username == "" || password == null || password == "")
-                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+
             else
             {
                 AutoFollow autoFollow = new AutoFollow();
@@ -321,11 +330,11 @@ namespace InstagramTool
             }
             else
             {
-            Form2 f2 = new Form2(this,driver);
-            this.Hide();
-            f2.Show();
-            }    
-           
+                Form2 f2 = new Form2(this, driver);
+                this.Hide();
+                f2.Show();
+            }
+
         }
 
         private void Form1_Activated(object sender, EventArgs e)
@@ -344,4 +353,4 @@ namespace InstagramTool
             
         }
     }
-} 
+}

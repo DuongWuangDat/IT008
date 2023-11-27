@@ -86,6 +86,7 @@
             this.Controls.Add(this.urlTextBox);
             this.Name = "AutoFollow";
             this.Text = "AutoFollow";
+            this.Activated += new System.EventHandler(this.AutoFl_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AutoFollow_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -64,3 +64,7 @@ B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\De
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
 D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
+D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtras.WaitHelpers.dll
+D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
+D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
+D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources

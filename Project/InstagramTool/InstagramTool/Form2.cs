@@ -33,6 +33,23 @@ namespace InstagramTool
             driver = c;
 
         }
+        private void Form2_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Form1.driver == null || Form1.driver.WindowHandles.Count == 0)
+                {
+                    Form1.IsLogin = false;
+                    this.Owner.Show();
+                    this.Close();
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
+
+        }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {

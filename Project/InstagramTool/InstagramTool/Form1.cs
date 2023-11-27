@@ -24,7 +24,7 @@ namespace InstagramTool
     public partial class Form1 : Form
     {
         public static IWebDriver driver;
-        public bool IsLogin = false;
+        public static bool IsLogin = false;
         public static string username;
         public static string password;
 
@@ -71,7 +71,7 @@ namespace InstagramTool
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
         }
 
@@ -88,7 +88,7 @@ namespace InstagramTool
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
 
         }
@@ -98,7 +98,7 @@ namespace InstagramTool
             // First load
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
@@ -160,7 +160,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
@@ -299,7 +299,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
 
@@ -325,7 +325,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             else
@@ -335,6 +335,22 @@ namespace InstagramTool
                 f2.Show();
             }
 
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (driver == null || driver.WindowHandles.Count == 0)
+                {
+                    IsLogin = false;
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
+            
         }
     }
 }

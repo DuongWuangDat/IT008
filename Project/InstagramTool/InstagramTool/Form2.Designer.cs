@@ -161,6 +161,7 @@
             this.Controls.Add(this.griduser);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Activated += new System.EventHandler(this.Form2_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.griduser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridcmt)).EndInit();

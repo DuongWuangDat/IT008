@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -42,8 +43,31 @@ namespace InstagramTool
             return result;
         }
 
+        private void AutoFl_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Form1.driver == null || Form1.driver.WindowHandles.Count == 0)
+                {
+                    Form1.IsLogin = false;
+                    this.Owner.Show();
+                    this.Close();
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
+
+        }
+
         private void autoFollowbtn_Click(object sender, EventArgs e)
         {
+            if (Form1.IsLogin == false)
+            {
+                MessageBox.Show("Vui lòng login lại");
+                return;
+            }
             if (urlTextBox.Text == null || urlTextBox.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập url");
@@ -76,8 +100,10 @@ namespace InstagramTool
             }
             this.Focus();
             this.Activate();
-            MessageBox.Show("Thành công " + (urls.Count - error.Count) + "\nBị lỗi " + PrintList(error));
-            driver.Quit();
+            if (error.Count != 0)
+                MessageBox.Show("Thành công " + (urls.Count - error.Count)+"/" + urls.Count + "\nBị lỗi " + PrintList(error));
+            else
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) +"/" + urls.Count);
         }
 
         private void AutoFollow_FormClosed(object sender, FormClosedEventArgs e)

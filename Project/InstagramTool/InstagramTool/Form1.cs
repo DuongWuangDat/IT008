@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V117.Debugger;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace InstagramTool
 {
     public partial class Form1 : Form
     {
-        IWebDriver driver;
+        public static IWebDriver driver;
+        public bool IsLogin = false;
         public static string username;
         public static string password;
 
@@ -35,7 +37,17 @@ namespace InstagramTool
         {
             try
             {
-                driver = new ChromeDriver();
+                if (username == null || username == "" || password == null || password == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+                    return;
+                }
+                ChromeOptions options = new ChromeOptions();
+                options.SetLoggingPreference("browser", LogLevel.Off);
+                options.SetLoggingPreference("driver", LogLevel.Off);
+                options.SetLoggingPreference("performance", LogLevel.Off);
+                driver = new ChromeDriver(options);
+                
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
@@ -46,6 +58,16 @@ namespace InstagramTool
                 pass.SendKeys(password_box.Text);
                 Thread.Sleep(2000);
                 login.Click();
+                Thread.Sleep(5000);
+                try
+                {
+                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save Info')]"));
+                    IsLogin = true;
+                }
+                catch
+                {
+                    IsLogin = false;
+                }
             }
             catch
             {
@@ -74,6 +96,11 @@ namespace InstagramTool
         private void autotimbtn_Click(object sender, EventArgs e)
         {
             // First load
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
             IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
             IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
             IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
@@ -130,7 +157,12 @@ namespace InstagramTool
 
         }
         private void CrawlImage_btn_Click(object sender, EventArgs e)
-        {           
+        {
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             DialogResult result = folderDialog.ShowDialog();
 
@@ -150,7 +182,7 @@ namespace InstagramTool
                 postCount = 1;
                 //Nếu không phải post cuối cùng
                 IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                while(nextButton.Displayed)
+                while (nextButton.Displayed)
                 {
                     try
                     {
@@ -160,7 +192,7 @@ namespace InstagramTool
                         postCount++;
                         nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
                     }
-                    catch(NoSuchElementException) 
+                    catch (NoSuchElementException)
                     {
                         //Post cuối cùng
                         EachImage(postCount, folderDialog);
@@ -170,15 +202,15 @@ namespace InstagramTool
                     }
                 }
             }
-            catch(NoSuchElementException)
+            catch (NoSuchElementException)
             {
                 //Post cuối cùng
                 EachImage(postCount, folderDialog);
                 SendKeys.Send("{ESC}");
                 MessageBox.Show("Crawling successfully");
-            }    
+            }
         }
-    
+
         public void EachImage(int postCount, FolderBrowserDialog folderDialog)
         {
             int imageCount = 1;
@@ -240,8 +272,8 @@ namespace InstagramTool
                         break;
                     }
                 }
-        }
-            catch 
+            }
+            catch
             {
                 IWebElement a = driver.FindElement(By.XPath("//div[@role='dialog']//img"));
                 //Co duy nhat 1 anh
@@ -258,15 +290,19 @@ namespace InstagramTool
                             client.DownloadFile(new Uri(imageUrl), filePath);
                             imageCount++;
                         }
-}
+                    }
                 }
             }
         }
 
         private void autofollowbtn_Click(object sender, EventArgs e)
         {
-            if (username == null || username == "" || password == null || password == "")
-                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
+
             else
             {
                 AutoFollow autoFollow = new AutoFollow();
@@ -284,5 +320,21 @@ namespace InstagramTool
         {
             password = password_box.Text;
         }
+
+        private void autocmtbtn_Click(object sender, EventArgs e)
+        {
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chua login");
+                return;
+            }
+            else
+            {
+                Form2 f2 = new Form2(this, driver);
+                this.Hide();
+                f2.Show();
+            }
+
+        }
     }
-} 
+}

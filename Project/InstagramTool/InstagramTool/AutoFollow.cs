@@ -89,7 +89,7 @@ namespace InstagramTool
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
 
                     IWebElement followBtn = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Follow']")));
-                    //followBtn.Click();
+                    followBtn.Click();
                     Thread.Sleep(2000);
                 }
                 catch (Exception)
@@ -100,7 +100,7 @@ namespace InstagramTool
             this.Focus();
             this.Activate();
             if (error.Count != 0)
-                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count + "\nBị lỗi " + PrintList(error));
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count + "\nBị lỗi ở url: " + PrintList(error));
             else
                 MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count);
         }

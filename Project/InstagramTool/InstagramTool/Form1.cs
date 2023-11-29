@@ -188,21 +188,20 @@ namespace InstagramTool
 
             if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
             {
-                MessageBox.Show("Chưa chọn nơi lưu ảnh!");
+                MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
 
             driver.Navigate().GoToUrl(urlbox.Text);
             Thread.Sleep(4000);
             IWebElement avatar = driver.FindElement(By.XPath("//header//img"));
-            string imageUrl = avatar.GetAttribute("src");              
+            string imageUrl = avatar.GetAttribute("src");
             using (WebClient client = new WebClient())
             {
                 string fileName = $"avatar.jpg";
                 string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                 client.DownloadFile(new Uri(imageUrl), filePath);
             }
-
             int postCount = 1;
             IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
             postElements[0].Click();
@@ -310,7 +309,7 @@ namespace InstagramTool
                 foreach (var imageElement in imageElements)
                 {
                     string imageUrl = imageElement.GetAttribute("src");
-                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150"))
+                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                     {
                         using (WebClient client = new WebClient())
                         {

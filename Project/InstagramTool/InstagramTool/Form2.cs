@@ -88,7 +88,6 @@ namespace InstagramTool
                 IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
                 while (flag==1)
                 {                            
-                   Thread.Sleep(500); 
                     random = new Random();
                     int i = random.Next(0, ListCmt.Count);
                     string comment = ListCmt[i].text;
@@ -125,7 +124,7 @@ namespace InstagramTool
                     }
                     finally
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(200);
                     }
 
                     Thread.Sleep(500);
@@ -133,17 +132,17 @@ namespace InstagramTool
                     {
                         var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
                         btnpost.Click();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                     }
                     catch
                     {
                         var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
                         btnpost.Click();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                     }
                     finally
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(200);
                     }
                     try
                     {

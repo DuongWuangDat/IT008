@@ -1,28 +1,22 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InstagramTool
 {
     public partial class AutoFollow : Form
     {
-        List<int> error;
+
         string username;
         string password;
         public AutoFollow()
         {
             InitializeComponent();
-            error = new List<int>();
             username = Form1.username;
             password = Form1.password;
         }
@@ -49,39 +43,40 @@ namespace InstagramTool
             return result;
         }
 
+        private void AutoFl_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Form1.driver == null || Form1.driver.WindowHandles.Count == 0)
+                {
+                    Form1.IsLogin = false;
+                    this.Owner.Show();
+                    this.Close();
+                }
+            }
+            catch
+            {
+                Form1.IsLogin = false;
+                this.Owner.Show();
+                this.Close();
+            }
+
+        }
+
         private void autoFollowbtn_Click(object sender, EventArgs e)
         {
+            List<int> error = new List<int>();
+            if (Form1.IsLogin == false)
+            {
+                MessageBox.Show("Vui lòng login lại");
+                return;
+            }
             if (urlTextBox.Text == null || urlTextBox.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập url");
                 return;
             }
-            ChromeDriver driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-            try
-            {
-                driver.Navigate().GoToUrl("https://www.instagram.com/");
-                var userfill = driver.FindElement(By.Name("username"));
-                userfill.SendKeys(username);
-                var passfill = driver.FindElement(By.Name("password"));
-                passfill.SendKeys(password);
-                var loginBtn = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button/div"));
-                loginBtn.Click();
-
-                var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save Info')]"));
-                saveInfor.Click();
-
-                var allowNoti = driver.FindElement(By.XPath("//button[contains(text(),'Not Now')]"));
-                allowNoti.Click();
-            }
-            catch (Exception)
-            {
-                this.Focus();
-                this.Activate();
-                MessageBox.Show("Vui lòng kiểm tra internet hoặc thông tin tài khoản", "Đăng nhập không thành công");
-                driver.Quit();
-                return;
-            }
+            IWebDriver driver = Form1.driver;
 
             string[] input = urlTextBox.Text.Split('\n');
             List<string> urls = removeErrorUrls(input);
@@ -91,8 +86,11 @@ namespace InstagramTool
                 try
                 {
                     driver.Navigate().GoToUrl(urls[indexError]);
-                    var followBtn = driver.FindElement(By.XPath("//*[text()='Follow']"));
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+
+                    IWebElement followBtn = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Follow']")));
                     followBtn.Click();
+                    Thread.Sleep(2000);
                 }
                 catch (Exception)
                 {
@@ -101,8 +99,10 @@ namespace InstagramTool
             }
             this.Focus();
             this.Activate();
-            MessageBox.Show("Thành công " + (urls.Count - error.Count) + "\nBị lỗi " + PrintList(error));
-            driver.Quit();
+            if (error.Count != 0)
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count + "\nBị lỗi ở url: " + PrintList(error));
+            else
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count);
         }
 
         private void AutoFollow_FormClosed(object sender, FormClosedEventArgs e)

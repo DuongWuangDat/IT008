@@ -23,14 +23,31 @@ namespace InstagramTool
         private string pass;
         private List<stringitem> ListUser;
         private List<stringitem> ListCmt;
-        public Form2(Form1 f1, string a, string b)
+        public Form2(Form1 f1, IWebDriver c)
         {
             InitializeComponent();
             this.f1 = f1;
             ListUser = new List<stringitem>();
             ListCmt = new List<stringitem>();
-            user = a;
-            pass = b;
+   
+            driver = c;
+
+        }
+        private void Form2_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Form1.driver == null || Form1.driver.WindowHandles.Count == 0)
+                {
+                    Form1.IsLogin = false;
+                    this.Owner.Show();
+                    this.Close();
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
 
         }
 
@@ -58,18 +75,6 @@ namespace InstagramTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.instagram.com/");
-
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-            IWebElement user1 = driver.FindElement(By.Name("username"));
-            IWebElement pass1 = driver.FindElement(By.Name("password"));
-            IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
-            user1.SendKeys(user);
-            pass1.SendKeys(pass);
-            Thread.Sleep(2000);
-            login.Click();
-            Thread.Sleep(4000);
             //
             foreach (stringitem url in ListUser)
             {

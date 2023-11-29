@@ -122,6 +122,7 @@
             this.autocmtbtn.TabIndex = 7;
             this.autocmtbtn.Text = "AutoComment";
             this.autocmtbtn.UseVisualStyleBackColor = false;
+            this.autocmtbtn.Click += new System.EventHandler(this.autocmtbtn_Click);
             // 
             // urlbox
             // 
@@ -182,6 +183,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

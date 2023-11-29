@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V117.Debugger;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace InstagramTool
 {
     public partial class Form1 : Form
     {
-        static IWebDriver driver;
-        bool IsLogin=false;
+        public static IWebDriver driver;
+        public static bool IsLogin = false;
         public static string username;
         public static string password;
 
@@ -36,7 +37,17 @@ namespace InstagramTool
         {
             try
             {
-                driver = new ChromeDriver();
+                if (username == null || username == "" || password == null || password == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+                    return;
+                }
+                ChromeOptions options = new ChromeOptions();
+                options.SetLoggingPreference("browser", LogLevel.Off);
+                options.SetLoggingPreference("driver", LogLevel.Off);
+                options.SetLoggingPreference("performance", LogLevel.Off);
+                driver = new ChromeDriver(options);
+                
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
@@ -57,11 +68,10 @@ namespace InstagramTool
                 {
                     IsLogin = false;
                 }
-                Console.WriteLine(IsLogin);
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
         }
 
@@ -69,6 +79,12 @@ namespace InstagramTool
         {
             try
             {
+                if(IsLogin == false)
+                {
+                    MessageBox.Show("Chưa đăng nhập");
+                    return;
+                }
+
                 driver.Navigate().GoToUrl(urlbox.Text);
                 Thread.Sleep(5000);
                 IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
@@ -78,7 +94,7 @@ namespace InstagramTool
             }
             catch
             {
-                MessageBox.Show("Xay ra loi");
+                MessageBox.Show("Xảy ra lỗi");
             }
 
         }
@@ -86,55 +102,69 @@ namespace InstagramTool
         private void autotimbtn_Click(object sender, EventArgs e)
         {
             // First load
-            if(IsLogin == false)
+            if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
-            IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-            IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-            IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-            while (nextButton.Displayed)
+            try
             {
-                try
-                {
-
-                    if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
-                    {
-                        timButton.Click();
-                    }
-
-                    Thread.Sleep(2000);
-                    nextButton.Click();
-
-                    nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-
-                    timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                    isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-
-                }
-                catch (NoSuchElementException)
+                driver.Navigate().GoToUrl(urlbox.Text);
+                Thread.Sleep(5000);
+                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
+                string userID = divElement.GetAttribute("id");
+                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
+                selectPost.Click();
+                Thread.Sleep(3000);
+                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                while (nextButton.Displayed)
                 {
                     try
                     {
-                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
                         if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                         {
                             timButton.Click();
                         }
+
+                        Thread.Sleep(2000);
+                        nextButton.Click();
+
+                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+
+                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        try
+                        {
+                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                            if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                            {
+                                timButton.Click();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Element not found");
+                        }
+                        break;
                     }
                     catch
                     {
-                        MessageBox.Show("Element not found");
-                    }
-                    break;
-                }
-                catch
-                {
 
-                    break;
+                        break;
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Xảy ra lỗi");
             }
         }
 
@@ -150,7 +180,7 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
@@ -172,7 +202,7 @@ namespace InstagramTool
                 postCount = 1;
                 //Nếu không phải post cuối cùng
                 IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                while(nextButton.Displayed)
+                while (nextButton.Displayed)
                 {
                     try
                     {
@@ -182,7 +212,7 @@ namespace InstagramTool
                         postCount++;
                         nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
                     }
-                    catch(NoSuchElementException) 
+                    catch (NoSuchElementException)
                     {
                         //Post cuối cùng
                         EachImage(postCount, folderDialog);
@@ -192,15 +222,15 @@ namespace InstagramTool
                     }
                 }
             }
-            catch(NoSuchElementException)
+            catch (NoSuchElementException)
             {
                 //Post cuối cùng
                 EachImage(postCount, folderDialog);
                 SendKeys.Send("{ESC}");
                 MessageBox.Show("Crawling successfully");
-            }    
+            }
         }
-    
+
         public void EachImage(int postCount, FolderBrowserDialog folderDialog)
         {
             int imageCount = 1;
@@ -262,8 +292,8 @@ namespace InstagramTool
                         break;
                     }
                 }
-        }
-            catch 
+            }
+            catch
             {
                 IWebElement a = driver.FindElement(By.XPath("//div[@role='dialog']//img"));
                 //Co duy nhat 1 anh
@@ -280,7 +310,7 @@ namespace InstagramTool
                             client.DownloadFile(new Uri(imageUrl), filePath);
                             imageCount++;
                         }
-}
+                    }
                 }
             }
         }
@@ -289,11 +319,10 @@ namespace InstagramTool
         {
             if (IsLogin == false)
             {
-                MessageBox.Show("Chua login");
+                MessageBox.Show("Chưa đăng nhập");
                 return;
             }
-            if (username == null || username == "" || password == null || password == "")
-                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
+
             else
             {
                 AutoFollow autoFollow = new AutoFollow();
@@ -311,5 +340,37 @@ namespace InstagramTool
         {
             password = password_box.Text;
         }
+
+        private void autocmtbtn_Click(object sender, EventArgs e)
+        {
+            if (IsLogin == false)
+            {
+                MessageBox.Show("Chưa đăng nhập");
+                return;
+            }
+            else
+            {
+                Form2 f2 = new Form2(this, driver);
+                this.Hide();
+                f2.Show();
+            }
+
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (driver == null || driver.WindowHandles.Count == 0)
+                {
+                    IsLogin = false;
+                }
+            }
+            catch
+            {
+                // Do not thing
+            }
+            
+        }
     }
-} 
+}

@@ -168,12 +168,21 @@ namespace InstagramTool
 
             if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
             {
-                MessageBox.Show("Invalid folder selection or folder not chosen.");
+                MessageBox.Show("Chưa chọn nơi lưu ảnh!");
                 return;
             }
 
             driver.Navigate().GoToUrl(urlbox.Text);
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
+            IWebElement avatar = driver.FindElement(By.XPath("//header//img"));
+            string imageUrl = avatar.GetAttribute("src");              
+            using (WebClient client = new WebClient())
+            {
+                string fileName = $"avatar.jpg";
+                string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                client.DownloadFile(new Uri(imageUrl), filePath);
+            }
+
             int postCount = 1;
             IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
             postElements[0].Click();
@@ -197,7 +206,7 @@ namespace InstagramTool
                         //Post cuối cùng
                         EachImage(postCount, folderDialog);
                         SendKeys.Send("{ESC}");
-                        MessageBox.Show("Crawling successfully");
+                        MessageBox.Show("Tải về thành công");
                         break;
                     }
                 }
@@ -207,7 +216,7 @@ namespace InstagramTool
                 //Post cuối cùng
                 EachImage(postCount, folderDialog);
                 SendKeys.Send("{ESC}");
-                MessageBox.Show("Crawling successfully");
+                MessageBox.Show("Tải về thành công");
             }
         }
 

@@ -61,7 +61,7 @@ namespace InstagramTool
                 Thread.Sleep(5000);
                 try
                 {
-                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save Info')]"));
+                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save info')]"));
                     IsLogin = true;
                 }
                 catch

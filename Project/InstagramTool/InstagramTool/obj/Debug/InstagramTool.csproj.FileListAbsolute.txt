@@ -68,3 +68,6 @@ D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\I
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtras.WaitHelpers.dll
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml

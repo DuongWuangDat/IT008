@@ -76,29 +76,7 @@ namespace InstagramTool
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(IsLogin == false)
-                {
-                    MessageBox.Show("Chưa đăng nhập");
-                    return;
-                }
-
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-            }
-            catch
-            {
-                MessageBox.Show("Xảy ra lỗi");
-            }
-
-        }
+        
 
         private void autotimbtn_Click(object sender, EventArgs e)
         {
@@ -110,58 +88,62 @@ namespace InstagramTool
             }
             try
             {
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-                Thread.Sleep(3000);
-                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-                while (nextButton.Displayed)
+                foreach(string line in user_RichTb.Lines)
                 {
-                    try
-                    {
-
-                        if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
-                        {
-                            timButton.Click();
-                        }
-
-                        Thread.Sleep(2000);
-                        nextButton.Click();
-
-                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-
-                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-
-                    }
-                    catch (NoSuchElementException)
+                    driver.Navigate().GoToUrl(line);
+                    Thread.Sleep(5000);
+                    IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
+                    string userID = divElement.GetAttribute("id");
+                    IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div/div/div[1]/div[1]/a"));
+                    selectPost.Click();
+                    Thread.Sleep(3000);
+                    IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                    IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                    while (nextButton.Displayed)
                     {
                         try
                         {
-                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
                             if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                             {
                                 timButton.Click();
                             }
+
+                            Thread.Sleep(2000);
+                            nextButton.Click();
+
+                            nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+
+                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            try
+                            {
+                                timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                                isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                                if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                                {
+                                    timButton.Click();
+                                }
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Element not found");
+                            }
+                            break;
                         }
                         catch
                         {
-                            MessageBox.Show("Element not found");
-                        }
-                        break;
-                    }
-                    catch
-                    {
 
-                        break;
+                            break;
+                        }
                     }
                 }
+                
             }
             catch
             {

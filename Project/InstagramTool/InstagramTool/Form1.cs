@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace InstagramTool
                 Thread.Sleep(5000);
                 try
                 {
-                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save Info')]"));
+                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save info')]"));
                     IsLogin = true;
                 }
                 catch
@@ -75,29 +76,7 @@ namespace InstagramTool
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(IsLogin == false)
-                {
-                    MessageBox.Show("Chưa đăng nhập");
-                    return;
-                }
-
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-            }
-            catch
-            {
-                MessageBox.Show("Xảy ra lỗi");
-            }
-
-        }
+        
 
         private void autotimbtn_Click(object sender, EventArgs e)
         {
@@ -109,58 +88,62 @@ namespace InstagramTool
             }
             try
             {
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-                Thread.Sleep(3000);
-                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-                while (nextButton.Displayed)
+                foreach(string line in user_RichTb.Lines)
                 {
-                    try
-                    {
-
-                        if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
-                        {
-                            timButton.Click();
-                        }
-
-                        Thread.Sleep(2000);
-                        nextButton.Click();
-
-                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-
-                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-
-                    }
-                    catch (NoSuchElementException)
+                    driver.Navigate().GoToUrl(line);
+                    Thread.Sleep(5000);
+                    IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
+                    string userID = divElement.GetAttribute("id");
+                    IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div/div/div[1]/div[1]/a"));
+                    selectPost.Click();
+                    Thread.Sleep(3000);
+                    IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                    IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                    while (nextButton.Displayed)
                     {
                         try
                         {
-                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
                             if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                             {
                                 timButton.Click();
                             }
+
+                            Thread.Sleep(2000);
+                            nextButton.Click();
+
+                            nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+
+                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            try
+                            {
+                                timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                                isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                                if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                                {
+                                    timButton.Click();
+                                }
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Element not found");
+                            }
+                            break;
                         }
                         catch
                         {
-                            MessageBox.Show("Element not found");
-                        }
-                        break;
-                    }
-                    catch
-                    {
 
-                        break;
+                            break;
+                        }
                     }
                 }
+                
             }
             catch
             {
@@ -188,51 +171,61 @@ namespace InstagramTool
 
             if (result != DialogResult.OK || string.IsNullOrWhiteSpace(folderDialog.SelectedPath))
             {
-                MessageBox.Show("Invalid folder selection or folder not chosen.");
+                MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
-
-            driver.Navigate().GoToUrl(urlbox.Text);
-            Thread.Sleep(5000);
-            int postCount = 1;
-            IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
-            postElements[0].Click();
-            try
+            foreach (string line in user_RichTb.Lines)
             {
-                postCount = 1;
-                //Nếu không phải post cuối cùng
-                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                while (nextButton.Displayed)
+                try
                 {
-                    try
+                    driver.Navigate().GoToUrl(line);
+                }
+                catch(Exception ex){ MessageBox.Show(ex.Message);break; }
+                Thread.Sleep(5000);
+                int postCount = 1;
+                IWebElement user = driver.FindElement(By.XPath("//header//section//h2"));
+                string username = user.Text;
+                IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+                postElements[0].Click();
+                try
+                {
+                    postCount = 1;
+                    //Nếu không phải post cuối cùng
+                    IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    while (nextButton.Displayed)
                     {
-                        EachImage(postCount, folderDialog);
-                        nextButton.Click();
-                        Thread.Sleep(2000);
-                        postCount++;
-                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                    }
-                    catch (NoSuchElementException)
-                    {
-                        //Post cuối cùng
-                        EachImage(postCount, folderDialog);
-                        SendKeys.Send("{ESC}");
-                        MessageBox.Show("Crawling successfully");
-                        break;
+                        try
+                        {
+                            EachImage(username, postCount, folderDialog);
+                            nextButton.Click();
+                            Thread.Sleep(2000);
+                            postCount++;
+                            nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            //Post cuối cùng
+                            EachImage(username, postCount, folderDialog);
+                            SendKeys.Send("{ESC}");
+                            MessageBox.Show("Tải về thành công");
+                            break;
+                        }
+                        catch(Exception ex) { MessageBox.Show(ex.Message); }
                     }
                 }
+                catch (NoSuchElementException)
+                {
+                    //Post cuối cùng
+                    EachImage(username, postCount, folderDialog);
+                    SendKeys.Send("{ESC}");
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
-            catch (NoSuchElementException)
-            {
-                //Post cuối cùng
-                EachImage(postCount, folderDialog);
-                SendKeys.Send("{ESC}");
-                MessageBox.Show("Crawling successfully");
-            }
+                    MessageBox.Show("Tải về thành công");
         }
-
-        public void EachImage(int postCount, FolderBrowserDialog folderDialog)
+        public void EachImage(string username, int postCount, FolderBrowserDialog folderDialog)
         {
+            string lastImg="";
             int imageCount = 1;
             try
             {
@@ -243,76 +236,114 @@ namespace InstagramTool
                 }
                 else
                     nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
+                try
+                {
 
                 while (nextImgButton.Displayed)
                 {
                     try
-                    {
-                        //IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
-                        //foreach (var imageElement in imageElements)
-                        //{
-                        //    string imageUrl = imageElement.GetAttribute("src");
-                        //    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150"))
-                        //    {
-                        //        using (WebClient client = new WebClient())
-                        //        {
-                        //            string fileName = $"post_{postCount}_image_{imageCount}.jpg";
-                        //            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                        //            client.DownloadFile(new Uri(imageUrl), filePath);
-                        //            imageCount++;
-                        //        }
-                        //    }
-                        //}
-                        nextImgButton.Click();
-                        Thread.Sleep(1000);
-                        //post đầu tiên
-                        if (postCount == 1)
-                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
-                        else
-                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
-                    }
-                    catch (NoSuchElementException)
-                    {
-                        //Ảnh cuối cùng
-                        IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//img"));
-                        foreach (var imageElement in imageElements)
+                    {                        
+                        Thread.Sleep(2000);
+                        if (imageCount == 1)
                         {
-                            string imageUrl = imageElement.GetAttribute("src");
+                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                            string imageUrl = imageElements[0].GetAttribute("src");
+                            lastImg = imageUrl;
                             if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                             {
                                 using (WebClient client = new WebClient())
                                 {
-                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                                     string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                                     client.DownloadFile(new Uri(imageUrl), filePath);
                                     imageCount++;
                                 }
                             }
                         }
+                        else
+                        {
+                            string imageUrl;
+                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                                for (int i = 0;i < imageElements.Count();i++)
+                                {
+                                    imageUrl = imageElements[i].GetAttribute("src");
+                                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram")
+                                        &&imageUrl==lastImg)
+                                        {
+                                            using (WebClient client = new WebClient())
+                                            {
+                                                imageUrl = imageElements[i+1].GetAttribute("src");
+                                                string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
+                                                string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                                client.DownloadFile(new Uri(imageUrl), filePath);
+                                                imageCount++;
+                                                lastImg = imageUrl;
+                                            break;
+                                            }
+                                        }
+                                }
+                            }
+                        nextImgButton.Click();
+
+                        //post đầu tiên
+                        if (postCount == 1)
+                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
+                        else
+                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
+
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        //Ảnh cuối cùng
+                        try
+                        {
+                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                            string imageUrl = imageElements[imageElements.Count()-1].GetAttribute("src");
+                            if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
+                            {
+                                using (WebClient client = new WebClient())
+                                {
+                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
+                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                    client.DownloadFile(new Uri(imageUrl), filePath);
+                                    imageCount++;
+                                }
+                            }                          
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);break;
+                        }
                         break;
                     }
                 }
-            }
-            catch
-            {
-                IWebElement a = driver.FindElement(By.XPath("//div[@role='dialog']//img"));
-                //Co duy nhat 1 anh
-                IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//img"));
-                foreach (var imageElement in imageElements)
+                }
+                catch (Exception ex)
                 {
-                    string imageUrl = imageElement.GetAttribute("src");
-                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150"))
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            catch(NoSuchElementException)
+            {
+                //Co duy nhat 1 anh1    `
+                try
+                {
+                    IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//div[@role='button']//div[@class='_aagv']//img"));
+                    string imageUrl = imageElements[0].GetAttribute("src");
+                    if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                     {
                         using (WebClient client = new WebClient())
                         {
-                            string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                            string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                             string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                             client.DownloadFile(new Uri(imageUrl), filePath);
                             imageCount++;
                         }
                     }
                 }
+                catch(Exception ex) { MessageBox.Show(ex.Message); }    
             }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void autofollowbtn_Click(object sender, EventArgs e)
@@ -371,6 +402,11 @@ namespace InstagramTool
                 // Do not thing
             }
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

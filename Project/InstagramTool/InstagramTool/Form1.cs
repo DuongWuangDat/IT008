@@ -179,7 +179,6 @@ namespace InstagramTool
         }
         private void CrawlImage_btn_Click(object sender, EventArgs e)
         {
-            IsLogin = true;   
             if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
@@ -416,6 +415,11 @@ namespace InstagramTool
                 // Do not thing
             }
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

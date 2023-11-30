@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace InstagramTool
@@ -78,117 +79,96 @@ namespace InstagramTool
             //
             foreach (stringitem url in ListUser)
             {
-
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
                 driver.Navigate().GoToUrl(url.text);
                 Thread.Sleep(2000);
-                bool isEndOfPage = false;
-                int x = 0;
-                while (!isEndOfPage)
-                {
-                    int y = 0;
-                    IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
-                    foreach (var post in listpost)
+                int flag = 1;
+                IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
+                listpost[0].Click();
+                IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                while (flag==1)
+                {                            
+                    random = new Random();
+                    int i = random.Next(0, ListCmt.Count);
+                    string comment = ListCmt[i].text;
+                    try
                     {
-                        y++;
-                        if (y >= x)
+                        var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                        commentbox.SendKeys(comment);
+                        Thread.Sleep(200);
+                    }
+                    catch
+                    {
+                        try
                         {
-                            x++;
-                            try { post.Click(); }
-                            catch {  }
-                            finally { Thread.Sleep(2000); }
-                          
-                            random = new Random();
-                            int i = random.Next(0, ListCmt.Count);
-                            string comment = ListCmt[i].text;
+                            var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                            commentbox.SendKeys(comment);
+                            Thread.Sleep(200);
+                        }
+                        catch
+                        {
                             try
                             {
-                                var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
                                 commentbox.SendKeys(comment);
-                                Thread.Sleep(500);
+                                Thread.Sleep(200);
                             }
                             catch
                             {
-                                try
-                                {
-                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                    commentbox.SendKeys(comment);
-                                    Thread.Sleep(500);
-                                }
-                                catch
-                                {
-                                    try
-                                    {
-                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        commentbox.SendKeys(comment);
-                                        Thread.Sleep(500);
-                                    }
-                                    catch
-                                    {
-                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        commentbox.SendKeys(comment);
-                                        Thread.Sleep(500);
-                                    }
-
-                                }
-                            }
-                            finally
-                            {
-                                Thread.Sleep(500);
+                                var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                commentbox.SendKeys(comment);
+                                Thread.Sleep(200);
                             }
 
-                            Thread.Sleep(500);
-                            try
-                            {
-                                var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
-                                btnpost.Click();
-                                Thread.Sleep(2000);
-                            }
-                            catch
-                            {
-                                var btnpost = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
-                                btnpost.Click();
-                                Thread.Sleep(2000);
-                            }
-                            finally
-                            {
-                                Thread.Sleep(500);
-                            }
-                            try
-                            {
-                                var close = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[2]"));
-                                close.Click();
-                                Thread.Sleep(500);
-                            }
-                              catch
-                            {
-                                var close = driver.FindElement(By.XPath("/html/body/div[8]/div[1]/div/div[2]"));
-                                close.Click();
-                                Thread.Sleep(500);
-                            }  
-                            finally
-                            {
-                                Thread.Sleep(100);
-                            }
+                        }
+                    }
+                    finally
+                    {
+                        Thread.Sleep(200);
+                    }
 
-                            }
+                    Thread.Sleep(500);
+                    try
+                    {
+                        var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                        btnpost.Click();
+                        Thread.Sleep(2000);
+                    }
+                    catch
+                    {
+                        var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                        btnpost.Click();
+                        Thread.Sleep(2000);
+                    }
+                    finally
+                    {
+                        Thread.Sleep(200);
                     }
                     try
                     {
-                        // Cuộn trang xuống dưới (đây là một ví dụ, bạn có thể cần điều chỉnh cho phù hợp)
-                        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                        js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-
-                        // Đợi một khoảng thời gian trước khi lấy các phần tử tiếp theo
-                        Thread.Sleep(1000); // Hoặc có thể sử dụng WebDriverWait để đợi sự kiện cụ thể
+                       
+                        nextbtn.Click();
+                        Thread.Sleep(500);
                     }
-                    catch (Exception)
+                    catch 
                     {
-                        isEndOfPage = true; // Đánh dấu kết thúc trang khi không thể cuộn nữa
+                        try
+                        { nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                        nextbtn.Click(); }
+                        catch
+                        {
+                            flag = 0;
+                        }
                     }
-
-
 
                 }
+                if(flag == 0)
+                {
+                    MessageBox.Show("Đã bình luận xong");
+                }
+                else
+                { MessageBox.Show("Đã dừng bình luận"); }    
+               
             }
         }
     }

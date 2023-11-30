@@ -192,51 +192,56 @@ namespace InstagramTool
                 MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
-            try
+            foreach (string line in user_RichTb.Lines)
             {
-                driver.Navigate().GoToUrl(urlbox.Text);
-            }
-            catch(Exception ex){ MessageBox.Show(ex.Message); }
-            Thread.Sleep(5000);
-            int postCount = 1;
-            IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
-            postElements[0].Click();
-            try
-            {
-                postCount = 1;
-                //Nếu không phải post cuối cùng
-                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                while (nextButton.Displayed)
+                try
                 {
-                    try
-                    {
-                        EachImage(postCount, folderDialog);
-                        nextButton.Click();
-                        Thread.Sleep(2000);
-                        postCount++;
-                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                    }
-                    catch (NoSuchElementException)
-                    {
-                        //Post cuối cùng
-                        EachImage(postCount, folderDialog);
-                        SendKeys.Send("{ESC}");
-                        MessageBox.Show("Tải về thành công");
-                        break;
-                    }
-                    catch(Exception ex) { MessageBox.Show(ex.Message); }
+                    driver.Navigate().GoToUrl(line);
                 }
+                catch(Exception ex){ MessageBox.Show(ex.Message);break; }
+                Thread.Sleep(5000);
+                int postCount = 1;
+                IWebElement user = driver.FindElement(By.XPath("//header//section//h2"));
+                string username = user.Text;
+                IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+                postElements[0].Click();
+                try
+                {
+                    postCount = 1;
+                    //Nếu không phải post cuối cùng
+                    IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    while (nextButton.Displayed)
+                    {
+                        try
+                        {
+                            EachImage(username, postCount, folderDialog);
+                            nextButton.Click();
+                            Thread.Sleep(2000);
+                            postCount++;
+                            nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            //Post cuối cùng
+                            EachImage(username, postCount, folderDialog);
+                            SendKeys.Send("{ESC}");
+                            MessageBox.Show("Tải về thành công");
+                            break;
+                        }
+                        catch(Exception ex) { MessageBox.Show(ex.Message); }
+                    }
+                }
+                catch (NoSuchElementException)
+                {
+                    //Post cuối cùng
+                    EachImage(username, postCount, folderDialog);
+                    SendKeys.Send("{ESC}");
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
-            catch (NoSuchElementException)
-            {
-                //Post cuối cùng
-                EachImage(postCount, folderDialog);
-                SendKeys.Send("{ESC}");
-                MessageBox.Show("Tải về thành công");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    MessageBox.Show("Tải về thành công");
         }
-        public void EachImage(int postCount, FolderBrowserDialog folderDialog)
+        public void EachImage(string username, int postCount, FolderBrowserDialog folderDialog)
         {
             string lastImg="";
             int imageCount = 1;
@@ -266,7 +271,7 @@ namespace InstagramTool
                             {
                                 using (WebClient client = new WebClient())
                                 {
-                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                                     string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                                     client.DownloadFile(new Uri(imageUrl), filePath);
                                     imageCount++;
@@ -286,7 +291,7 @@ namespace InstagramTool
                                             using (WebClient client = new WebClient())
                                             {
                                                 imageUrl = imageElements[i+1].GetAttribute("src");
-                                                string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                                string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                                                 string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                                                 client.DownloadFile(new Uri(imageUrl), filePath);
                                                 imageCount++;
@@ -316,7 +321,7 @@ namespace InstagramTool
                             {
                                 using (WebClient client = new WebClient())
                                 {
-                                    string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                                     string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                                     client.DownloadFile(new Uri(imageUrl), filePath);
                                     imageCount++;
@@ -347,7 +352,7 @@ namespace InstagramTool
                     {
                         using (WebClient client = new WebClient())
                         {
-                            string fileName = $"post_{postCount}_image_{imageCount}.jpg";
+                            string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
                             string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
                             client.DownloadFile(new Uri(imageUrl), filePath);
                             imageCount++;

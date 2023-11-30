@@ -28,7 +28,7 @@ namespace InstagramTool
         public static bool IsLogin = false;
         public static string username;
         public static string password;
-
+        private Random random;
 
         public Form1()
         {
@@ -374,6 +374,7 @@ namespace InstagramTool
 
         private void autocmtbtn_Click(object sender, EventArgs e)
         {
+            List<string> ListCmt = new List<string>();
             if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
@@ -381,9 +382,103 @@ namespace InstagramTool
             }
             else
             {
-                Form2 f2 = new Form2(this, driver);
-                this.Hide();
-                f2.Show();
+                foreach (string cmt in comment_RichTb.Lines)
+                    ListCmt.Add(cmt);
+                foreach (string url in user_RichTb.Lines)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                    driver.Navigate().GoToUrl(url);
+                    Thread.Sleep(2000);
+                    int flag = 1;
+                    IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
+                    listpost[0].Click();
+                    IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    while (flag == 1)
+                    {
+                        random = new Random();
+                        int i = random.Next(0, ListCmt.Count);
+                        string comment = ListCmt[i];
+                        try
+                        {
+                            var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                            commentbox.SendKeys(comment);
+                            Thread.Sleep(200);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                commentbox.SendKeys(comment);
+                                Thread.Sleep(200);
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+                                catch
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+
+                            }
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+
+                        Thread.Sleep(500);
+                        try
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        catch
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+                        try
+                        {
+
+                            nextbtn.Click();
+                            Thread.Sleep(500);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                                nextbtn.Click();
+                            }
+                            catch
+                            {
+                                flag = 0;
+                            }
+                        }
+
+                    }
+                    if (flag == 0)
+                    {
+                        MessageBox.Show("Đã bình luận xong");
+                    }
+                    else
+                    { MessageBox.Show("Đã dừng bình luận"); }
+
+                }
             }
 
         }
@@ -407,6 +502,50 @@ namespace InstagramTool
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void userfile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog userfile = new OpenFileDialog();
+            userfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            userfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (userfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = userfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    user_RichTb.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file user thành công");
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog cmtfile = new OpenFileDialog();
+            cmtfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            cmtfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (cmtfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = cmtfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    comment_RichTb.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file comment thành công");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
         }
     }
 }

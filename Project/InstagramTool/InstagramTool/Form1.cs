@@ -179,7 +179,7 @@ namespace InstagramTool
         }
         private void CrawlImage_btn_Click(object sender, EventArgs e)
         {
-            
+            IsLogin = true;   
             if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
@@ -193,8 +193,11 @@ namespace InstagramTool
                 MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
-
-            driver.Navigate().GoToUrl(urlbox.Text);
+            try
+            {
+                driver.Navigate().GoToUrl(urlbox.Text);
+            }
+            catch(Exception ex){ MessageBox.Show(ex.Message); }
             Thread.Sleep(5000);
             int postCount = 1;
             IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
@@ -334,13 +337,12 @@ namespace InstagramTool
                     MessageBox.Show(ex.Message);
                 }
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
-            catch
+            catch(NoSuchElementException)
             {
                 //Co duy nhat 1 anh1    `
                 try
                 {
-                    IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                    IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//div[@role='button']//div[@class='_aagv']//img"));
                     string imageUrl = imageElements[0].GetAttribute("src");
                     if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                     {
@@ -355,6 +357,7 @@ namespace InstagramTool
                 }
                 catch(Exception ex) { MessageBox.Show(ex.Message); }    
             }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void autofollowbtn_Click(object sender, EventArgs e)

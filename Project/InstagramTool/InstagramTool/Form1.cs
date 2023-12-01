@@ -28,8 +28,9 @@ namespace InstagramTool
         public static bool IsLogin = false;
         public static string username;
         public static string password;
-
-
+        private Random random;
+        private int curent;
+        private int max;
         public Form1()
         {
             InitializeComponent();
@@ -76,29 +77,7 @@ namespace InstagramTool
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(IsLogin == false)
-                {
-                    MessageBox.Show("Chưa đăng nhập");
-                    return;
-                }
-
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-            }
-            catch
-            {
-                MessageBox.Show("Xảy ra lỗi");
-            }
-
-        }
+        
 
         private void autotimbtn_Click(object sender, EventArgs e)
         {
@@ -110,62 +89,86 @@ namespace InstagramTool
             }
             try
             {
-                driver.Navigate().GoToUrl(urlbox.Text);
-                Thread.Sleep(5000);
-                IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                string userID = divElement.GetAttribute("id");
-                IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a"));
-                selectPost.Click();
-                Thread.Sleep(3000);
-                IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
-                IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-                while (nextButton.Displayed)
+                toollabel.Text = "Auto tim";
+                max = user_RichTb.Lines.Count();
+                if (max > 0)
                 {
-                    try
-                    {
-
-                        if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
-                        {
-                            timButton.Click();
-                        }
-
-                        Thread.Sleep(2000);
-                        nextButton.Click();
-
-                        nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-
-                        timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                        isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
-
-                    }
-                    catch (NoSuchElementException)
+                    maxlabel.Text = max.ToString();
+                }
+                curent = 0;
+                foreach(string line in user_RichTb.Lines)
+                {
+                    
+                    
+                    driver.Navigate().GoToUrl(line);
+                    Thread.Sleep(5000);
+                    IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+                    postElements[0].Click();
+                    Thread.Sleep(3000);
+                    IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                    IWebElement isLiked = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                    while (nextButton.Displayed)
                     {
                         try
                         {
-                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
-                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
                             if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
                             {
                                 timButton.Click();
                             }
+
+                            Thread.Sleep(2000);
+                            nextButton.Click();
+
+                            nextButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+
+                            timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                            isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            try
+                            {
+                                timButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
+                                isLiked = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div/div/span"));
+                                if (isLiked.FindElement(By.TagName("svg")).GetAttribute("aria-label").Contains("Like"))
+                                {
+                                    timButton.Click();
+                                }
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Element not found");
+                            }
+                            break;
                         }
                         catch
                         {
-                            MessageBox.Show("Element not found");
-                        }
-                        break;
-                    }
-                    catch
-                    {
 
-                        break;
+                            break;
+                        }
                     }
+                    curent++;
+                    curlabel.Text = curent.ToString();
+                    progressBar1.Value = (curent * 100) / max;
                 }
+                MessageBox.Show("Đã xong");
+                curlabel.Text = "";
+                maxlabel.Text = "";
+                
             }
             catch
             {
+                curent++;
+                curlabel.Text = curent.ToString();
+                progressBar1.Value = (curent * 100) / max;
                 MessageBox.Show("Xảy ra lỗi");
+                curlabel.Text = "";
+                maxlabel.Text = "";
+                progressBar1.Value = 0;
+
             }
         }
 
@@ -192,6 +195,13 @@ namespace InstagramTool
                 MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
+            toollabel.Text = "Crawl image";
+            max = user_RichTb.Lines.Count();
+            if (max > 0)
+            {
+                maxlabel.Text = max.ToString();
+            }
+            curent = 0;
             foreach (string line in user_RichTb.Lines)
             {
                 try
@@ -225,7 +235,6 @@ namespace InstagramTool
                             //Post cuối cùng
                             EachImage(username, postCount, folderDialog);
                             SendKeys.Send("{ESC}");
-                            MessageBox.Show("Tải về thành công");
                             break;
                         }
                         catch(Exception ex) { MessageBox.Show(ex.Message); }
@@ -238,8 +247,15 @@ namespace InstagramTool
                     SendKeys.Send("{ESC}");
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
+                curent++;
+                curlabel.Text = curent.ToString();
+                progressBar1.Value = (curent * 100) / max;
             }
                     MessageBox.Show("Tải về thành công");
+            curlabel.Text = "";
+            maxlabel.Text = "";
+            progressBar1.Value = 0;
+
         }
         public void EachImage(string username, int postCount, FolderBrowserDialog folderDialog)
         {
@@ -392,6 +408,7 @@ namespace InstagramTool
 
         private void autocmtbtn_Click(object sender, EventArgs e)
         {
+            List<string> ListCmt = new List<string>();
             if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
@@ -399,9 +416,117 @@ namespace InstagramTool
             }
             else
             {
-                Form2 f2 = new Form2(this, driver);
-                this.Hide();
-                f2.Show();
+                toollabel.Text = "Auto comment";
+                max = user_RichTb.Lines.Count();
+                if (max > 0)
+                {
+                    maxlabel.Text = max.ToString();
+                }
+                curent = 0;
+                foreach (string cmt in comment_RichTb.Lines)
+                    ListCmt.Add(cmt);
+                foreach (string url in user_RichTb.Lines)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                    driver.Navigate().GoToUrl(url);
+                    Thread.Sleep(2000);
+                    int flag = 1;
+                    IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
+                    listpost[0].Click();
+                    IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    while (flag == 1)
+                    {
+                        random = new Random();
+                        int i = random.Next(0, ListCmt.Count);
+                        string comment = ListCmt[i];
+                        try
+                        {
+                            var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                            commentbox.SendKeys(comment);
+                            Thread.Sleep(200);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                commentbox.SendKeys(comment);
+                                Thread.Sleep(200);
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+                                catch
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+
+                            }
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+
+                        Thread.Sleep(500);
+                        try
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        catch
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+                        try
+                        {
+
+                            nextbtn.Click();
+                            Thread.Sleep(500);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                                nextbtn.Click();
+                            }
+                            catch
+                            {
+                                flag = 0;
+                            }
+                        }
+
+                    }
+                    if (flag == 0)
+                    {
+                        MessageBox.Show("Đã bình luận xong");
+                    }
+                    else
+                    { MessageBox.Show("Đã dừng bình luận"); }
+                    curent++;
+                    curlabel.Text = curent.ToString();
+                    int value = (curent * 100) / max;
+                    progressBar1.Value = value;
+                }
+                MessageBox.Show("Đã bình luận xong tất cả");
+                curlabel.Text = "";
+                maxlabel.Text = "";
+                progressBar1.Value = 0;
             }
 
         }
@@ -424,7 +549,53 @@ namespace InstagramTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            curlabel.Text = "";
+            maxlabel.Text = "";
+            progressBar1.Value = 0;
+        }
 
+        private void userfile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog userfile = new OpenFileDialog();
+            userfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            userfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (userfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = userfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    user_RichTb.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file user thành công");
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog cmtfile = new OpenFileDialog();
+            cmtfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            cmtfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (cmtfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = cmtfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    comment_RichTb.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file comment thành công");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
         }
     }
 }

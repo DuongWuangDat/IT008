@@ -44,6 +44,13 @@
             this.comment_RichTb = new System.Windows.Forms.RichTextBox();
             this.userfile = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toollabel = new System.Windows.Forms.Label();
+            this.curlabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.maxlabel = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -207,11 +214,73 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBar1.ForeColor = System.Drawing.Color.SpringGreen;
+            this.progressBar1.Location = new System.Drawing.Point(141, 7);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(105, 23);
+            this.progressBar1.TabIndex = 18;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.toollabel);
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.maxlabel);
+            this.panel1.Controls.Add(this.curlabel);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(0, 617);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(998, 93);
+            this.panel1.TabIndex = 19;
+            // 
+            // toollabel
+            // 
+            this.toollabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toollabel.AutoSize = true;
+            this.toollabel.Location = new System.Drawing.Point(29, 11);
+            this.toollabel.Name = "toollabel";
+            this.toollabel.Size = new System.Drawing.Size(0, 16);
+            this.toollabel.TabIndex = 19;
+            // 
+            // curlabel
+            // 
+            this.curlabel.AllowDrop = true;
+            this.curlabel.AutoSize = true;
+            this.curlabel.Location = new System.Drawing.Point(252, 10);
+            this.curlabel.Name = "curlabel";
+            this.curlabel.Size = new System.Drawing.Size(25, 16);
+            this.curlabel.TabIndex = 20;
+            this.curlabel.Text = "cur";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(276, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(11, 16);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "/";
+            // 
+            // maxlabel
+            // 
+            this.maxlabel.AutoSize = true;
+            this.maxlabel.Location = new System.Drawing.Point(286, 10);
+            this.maxlabel.Name = "maxlabel";
+            this.maxlabel.Size = new System.Drawing.Size(32, 16);
+            this.maxlabel.TabIndex = 22;
+            this.maxlabel.Text = "max";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 606);
+            this.ClientSize = new System.Drawing.Size(993, 654);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.userfile);
             this.Controls.Add(this.comment_RichTb);
@@ -233,6 +302,8 @@
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,6 +327,12 @@
         private System.Windows.Forms.RichTextBox comment_RichTb;
         private System.Windows.Forms.Button userfile;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label toollabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label curlabel;
+        private System.Windows.Forms.Label maxlabel;
     }
 }
 

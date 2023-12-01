@@ -29,7 +29,8 @@ namespace InstagramTool
         public static string username;
         public static string password;
         private Random random;
-
+        private int curent;
+        private int max;
         public Form1()
         {
             InitializeComponent();
@@ -88,14 +89,21 @@ namespace InstagramTool
             }
             try
             {
+                toollabel.Text = "Auto tim";
+                max = user_RichTb.Lines.Count();
+                if (max > 0)
+                {
+                    maxlabel.Text = max.ToString();
+                }
+                curent = 0;
                 foreach(string line in user_RichTb.Lines)
                 {
+                    
+                    
                     driver.Navigate().GoToUrl(line);
                     Thread.Sleep(5000);
-                    IWebElement divElement = driver.FindElement(By.XPath("/html/body/div[2]"));
-                    string userID = divElement.GetAttribute("id");
-                    IWebElement selectPost = driver.FindElement(By.XPath("//*[@id=\"" + userID + "\"]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/article/div/div/div[1]/div[1]/a"));
-                    selectPost.Click();
+                    IList<IWebElement> postElements = driver.FindElements(By.XPath("//article//a"));
+                    postElements[0].Click();
                     Thread.Sleep(3000);
                     IWebElement nextButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
                     IWebElement timButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/div"));
@@ -142,12 +150,25 @@ namespace InstagramTool
                             break;
                         }
                     }
+                    curent++;
+                    curlabel.Text = curent.ToString();
+                    progressBar1.Value = (curent * 100) / max;
                 }
+                MessageBox.Show("Đã xong");
+                curlabel.Text = "";
+                maxlabel.Text = "";
                 
             }
             catch
             {
+                curent++;
+                curlabel.Text = curent.ToString();
+                progressBar1.Value = (curent * 100) / max;
                 MessageBox.Show("Xảy ra lỗi");
+                curlabel.Text = "";
+                maxlabel.Text = "";
+                progressBar1.Value = 0;
+
             }
         }
 
@@ -174,6 +195,13 @@ namespace InstagramTool
                 MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
+            toollabel.Text = "Crawl image";
+            max = user_RichTb.Lines.Count();
+            if (max > 0)
+            {
+                maxlabel.Text = max.ToString();
+            }
+            curent = 0;
             foreach (string line in user_RichTb.Lines)
             {
                 try
@@ -220,8 +248,15 @@ namespace InstagramTool
                     SendKeys.Send("{ESC}");
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
+                curent++;
+                curlabel.Text = curent.ToString();
+                progressBar1.Value = (curent * 100) / max;
             }
                     MessageBox.Show("Tải về thành công");
+            curlabel.Text = "";
+            maxlabel.Text = "";
+            progressBar1.Value = 0;
+
         }
         public void EachImage(string username, int postCount, FolderBrowserDialog folderDialog)
         {
@@ -382,6 +417,13 @@ namespace InstagramTool
             }
             else
             {
+                toollabel.Text = "Auto comment";
+                max = user_RichTb.Lines.Count();
+                if (max > 0)
+                {
+                    maxlabel.Text = max.ToString();
+                }
+                curent = 0;
                 foreach (string cmt in comment_RichTb.Lines)
                     ListCmt.Add(cmt);
                 foreach (string url in user_RichTb.Lines)
@@ -477,8 +519,15 @@ namespace InstagramTool
                     }
                     else
                     { MessageBox.Show("Đã dừng bình luận"); }
-
+                    curent++;
+                    curlabel.Text = curent.ToString();
+                    int value = (curent * 100) / max;
+                    progressBar1.Value = value;
                 }
+                MessageBox.Show("Đã bình luận xong tất cả");
+                curlabel.Text = "";
+                maxlabel.Text = "";
+                progressBar1.Value = 0;
             }
 
         }
@@ -501,7 +550,9 @@ namespace InstagramTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            curlabel.Text = "";
+            maxlabel.Text = "";
+            progressBar1.Value = 0;
         }
 
         private void userfile_Click(object sender, EventArgs e)

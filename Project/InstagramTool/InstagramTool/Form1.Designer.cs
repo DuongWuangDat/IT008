@@ -44,6 +44,10 @@
             this.comment_RichTb = new System.Windows.Forms.RichTextBox();
             this.userfile = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.toollabel = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -205,11 +209,38 @@
             this.button3.Text = "Add comment\r\n.txt file";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // toollabel
+            // 
+            this.toollabel.AutoSize = true;
+            this.toollabel.Location = new System.Drawing.Point(26, 12);
+            this.toollabel.Name = "toollabel";
+            this.toollabel.Size = new System.Drawing.Size(35, 16);
+            this.toollabel.TabIndex = 17;
+            this.toollabel.Text = "Tool";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(70, 7);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 18;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.toollabel);
+            this.panel1.Location = new System.Drawing.Point(0, 617);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(998, 93);
+            this.panel1.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 606);
+            this.ClientSize = new System.Drawing.Size(993, 654);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.userfile);
             this.Controls.Add(this.comment_RichTb);
@@ -231,6 +262,8 @@
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +287,9 @@
         private System.Windows.Forms.RichTextBox comment_RichTb;
         private System.Windows.Forms.Button userfile;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label toollabel;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

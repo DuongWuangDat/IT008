@@ -406,7 +406,8 @@ namespace InstagramTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            toollabel.Text = autocmtbtn.Text;
+            progressBar1.Value = 70;
         }
     }
 }

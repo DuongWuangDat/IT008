@@ -35,12 +35,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.autotimbtn = new System.Windows.Forms.Button();
             this.autocmtbtn = new System.Windows.Forms.Button();
-            this.urlbox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.autofollowbtn = new System.Windows.Forms.Button();
             this.CrawlImage_btn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.user_RichTb = new System.Windows.Forms.RichTextBox();
+            this.urlTextBox = new System.Windows.Forms.RichTextBox();
             this.comment_RichTb = new System.Windows.Forms.RichTextBox();
             this.userfile = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -118,24 +116,6 @@
             this.autocmtbtn.UseVisualStyleBackColor = false;
             this.autocmtbtn.Click += new System.EventHandler(this.autocmtbtn_Click);
             // 
-            // urlbox
-            // 
-            this.urlbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.urlbox.Location = new System.Drawing.Point(557, 12);
-            this.urlbox.Name = "urlbox";
-            this.urlbox.Size = new System.Drawing.Size(268, 30);
-            this.urlbox.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(486, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 25);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Url";
-            // 
             // autofollowbtn
             // 
             this.autofollowbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -145,7 +125,7 @@
             this.autofollowbtn.TabIndex = 10;
             this.autofollowbtn.Text = "AutoFollow";
             this.autofollowbtn.UseVisualStyleBackColor = false;
-            this.autofollowbtn.Click += new System.EventHandler(this.autofollowbtn_Click);
+            this.autofollowbtn.Click += new System.EventHandler(this.autoFollowbtn_Click);
             // 
             // CrawlImage_btn
             // 
@@ -169,16 +149,18 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Instagram AutoTool";
             // 
-            // user_RichTb
+            // urlTextBox
             // 
-            this.user_RichTb.Location = new System.Drawing.Point(245, 147);
-            this.user_RichTb.Name = "user_RichTb";
-            this.user_RichTb.Size = new System.Drawing.Size(579, 215);
-            this.user_RichTb.TabIndex = 13;
-            this.user_RichTb.Text = "";
+            this.urlTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.urlTextBox.Location = new System.Drawing.Point(245, 147);
+            this.urlTextBox.Name = "urlTextBox";
+            this.urlTextBox.Size = new System.Drawing.Size(579, 215);
+            this.urlTextBox.TabIndex = 13;
+            this.urlTextBox.Text = "";
             // 
             // comment_RichTb
             // 
+            this.comment_RichTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comment_RichTb.Location = new System.Drawing.Point(245, 373);
             this.comment_RichTb.Name = "comment_RichTb";
             this.comment_RichTb.Size = new System.Drawing.Size(579, 215);
@@ -194,6 +176,7 @@
             this.userfile.TabIndex = 15;
             this.userfile.Text = "Add user \r\n.txt file";
             this.userfile.UseVisualStyleBackColor = false;
+            this.userfile.Click += new System.EventHandler(this.userfile_Click);
             // 
             // button3
             // 
@@ -213,12 +196,10 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.userfile);
             this.Controls.Add(this.comment_RichTb);
-            this.Controls.Add(this.user_RichTb);
+            this.Controls.Add(this.urlTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.CrawlImage_btn);
             this.Controls.Add(this.autofollowbtn);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.urlbox);
             this.Controls.Add(this.autocmtbtn);
             this.Controls.Add(this.autotimbtn);
             this.Controls.Add(this.label2);
@@ -245,12 +226,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button autotimbtn;
         private System.Windows.Forms.Button autocmtbtn;
-        private System.Windows.Forms.TextBox urlbox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button autofollowbtn;
         private System.Windows.Forms.Button CrawlImage_btn;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox user_RichTb;
+        private System.Windows.Forms.RichTextBox urlTextBox;
         private System.Windows.Forms.RichTextBox comment_RichTb;
         private System.Windows.Forms.Button userfile;
         private System.Windows.Forms.Button button3;

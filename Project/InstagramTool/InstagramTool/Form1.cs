@@ -43,27 +43,26 @@ namespace InstagramTool
                     MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu");
                     return;
                 }
-                ChromeOptions options = new ChromeOptions();
-                options.SetLoggingPreference("browser", LogLevel.Off);
-                options.SetLoggingPreference("driver", LogLevel.Off);
-                options.SetLoggingPreference("performance", LogLevel.Off);
-                driver = new ChromeDriver(options);
-                
+                driver = new ChromeDriver();
+
                 driver.Navigate().GoToUrl("https://www.instagram.com/");
 
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
                 IWebElement user = driver.FindElement(By.Name("username"));
                 IWebElement pass = driver.FindElement(By.Name("password"));
-                IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
+                //IWebElement login = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button"));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                IWebElement login = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"loginForm\"]/div/div[3]/button")));
                 user.SendKeys(username_box.Text);
                 pass.SendKeys(password_box.Text);
-                Thread.Sleep(2000);
                 login.Click();
-                Thread.Sleep(5000);
                 try
                 {
-                    var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save info')]"));
+                    //var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save info')]"));
+                    var saveInfor = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(text(),'Save info')]")));
                     IsLogin = true;
+                    this.Activate();
+                    MessageBox.Show("Đăng nhập thành công");
                 }
                 catch
                 {
@@ -72,11 +71,12 @@ namespace InstagramTool
             }
             catch
             {
-                MessageBox.Show("Xảy ra lỗi");
+                this.Activate();
+                MessageBox.Show("Xảy ra lỗi khi đăng nhập");
             }
         }
 
-        
+
 
         private void autotimbtn_Click(object sender, EventArgs e)
         {
@@ -88,7 +88,7 @@ namespace InstagramTool
             }
             try
             {
-                foreach(string line in user_RichTb.Lines)
+                foreach (string line in urlTextBox.Lines)
                 {
                     driver.Navigate().GoToUrl(line);
                     Thread.Sleep(5000);
@@ -143,7 +143,7 @@ namespace InstagramTool
                         }
                     }
                 }
-                
+
             }
             catch
             {
@@ -174,13 +174,13 @@ namespace InstagramTool
                 MessageBox.Show("Chưa chọn thư mục lưu ảnh");
                 return;
             }
-            foreach (string line in user_RichTb.Lines)
+            foreach (string line in urlTextBox.Lines)
             {
                 try
                 {
                     driver.Navigate().GoToUrl(line);
                 }
-                catch(Exception ex){ MessageBox.Show(ex.Message);break; }
+                catch (Exception ex) { MessageBox.Show(ex.Message); break; }
                 Thread.Sleep(5000);
                 int postCount = 1;
                 IWebElement user = driver.FindElement(By.XPath("//header//section//h2"));
@@ -210,7 +210,7 @@ namespace InstagramTool
                             MessageBox.Show("Tải về thành công");
                             break;
                         }
-                        catch(Exception ex) { MessageBox.Show(ex.Message); }
+                        catch (Exception ex) { MessageBox.Show(ex.Message); }
                     }
                 }
                 catch (NoSuchElementException)
@@ -221,11 +221,11 @@ namespace InstagramTool
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
-                    MessageBox.Show("Tải về thành công");
+            MessageBox.Show("Tải về thành công");
         }
         public void EachImage(string username, int postCount, FolderBrowserDialog folderDialog)
         {
-            string lastImg="";
+            string lastImg = "";
             int imageCount = 1;
             try
             {
@@ -239,91 +239,91 @@ namespace InstagramTool
                 try
                 {
 
-                while (nextImgButton.Displayed)
-                {
-                    try
-                    {                        
-                        Thread.Sleep(2000);
-                        if (imageCount == 1)
+                    while (nextImgButton.Displayed)
+                    {
+                        try
                         {
-                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
-                            string imageUrl = imageElements[0].GetAttribute("src");
-                            lastImg = imageUrl;
-                            if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
+                            Thread.Sleep(2000);
+                            if (imageCount == 1)
                             {
-                                using (WebClient client = new WebClient())
+                                IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                                string imageUrl = imageElements[0].GetAttribute("src");
+                                lastImg = imageUrl;
+                                if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                                 {
-                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
-                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                                    client.DownloadFile(new Uri(imageUrl), filePath);
-                                    imageCount++;
+                                    using (WebClient client = new WebClient())
+                                    {
+                                        string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
+                                        string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                        client.DownloadFile(new Uri(imageUrl), filePath);
+                                        imageCount++;
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            string imageUrl;
-                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
-                                for (int i = 0;i < imageElements.Count();i++)
+                            else
+                            {
+                                string imageUrl;
+                                IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                                for (int i = 0; i < imageElements.Count(); i++)
                                 {
                                     imageUrl = imageElements[i].GetAttribute("src");
                                     if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram")
-                                        &&imageUrl==lastImg)
+                                        && imageUrl == lastImg)
+                                    {
+                                        using (WebClient client = new WebClient())
                                         {
-                                            using (WebClient client = new WebClient())
-                                            {
-                                                imageUrl = imageElements[i+1].GetAttribute("src");
-                                                string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
-                                                string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                                                client.DownloadFile(new Uri(imageUrl), filePath);
-                                                imageCount++;
-                                                lastImg = imageUrl;
+                                            imageUrl = imageElements[i + 1].GetAttribute("src");
+                                            string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
+                                            string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                            client.DownloadFile(new Uri(imageUrl), filePath);
+                                            imageCount++;
+                                            lastImg = imageUrl;
                                             break;
-                                            }
                                         }
+                                    }
                                 }
                             }
-                        nextImgButton.Click();
+                            nextImgButton.Click();
 
-                        //post đầu tiên
-                        if (postCount == 1)
-                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
-                        else
-                            nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
+                            //post đầu tiên
+                            if (postCount == 1)
+                                nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
+                            else
+                                nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
 
-                    }
-                    catch (NoSuchElementException)
-                    {
-                        //Ảnh cuối cùng
-                        try
+                        }
+                        catch (NoSuchElementException)
                         {
-                            IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
-                            string imageUrl = imageElements[imageElements.Count()-1].GetAttribute("src");
-                            if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
+                            //Ảnh cuối cùng
+                            try
                             {
-                                using (WebClient client = new WebClient())
+                                IList<IWebElement> imageElements = driver.FindElements(By.XPath("//div[@role='dialog']//article[@role='presentation']//li[@class='_acaz']//div[@role='button']//div[@class='_aagv']//img"));
+                                string imageUrl = imageElements[imageElements.Count() - 1].GetAttribute("src");
+                                if (!string.IsNullOrEmpty(imageUrl) && !imageUrl.Contains("s150x150") && !imageUrl.Contains("_n.jpg?_nc_ht=instagram"))
                                 {
-                                    string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
-                                    string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
-                                    client.DownloadFile(new Uri(imageUrl), filePath);
-                                    imageCount++;
+                                    using (WebClient client = new WebClient())
+                                    {
+                                        string fileName = $"{username}_post_{postCount}_image_{imageCount}.jpg";
+                                        string filePath = Path.Combine(folderDialog.SelectedPath, fileName);
+                                        client.DownloadFile(new Uri(imageUrl), filePath);
+                                        imageCount++;
+                                    }
                                 }
-                            }                          
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message); break;
+                            }
+                            break;
                         }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);break;
-                        }
-                        break;
                     }
-                }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
-            catch(NoSuchElementException)
+            catch (NoSuchElementException)
             {
                 //Co duy nhat 1 anh1    `
                 try
@@ -341,25 +341,9 @@ namespace InstagramTool
                         }
                     }
                 }
-                catch(Exception ex) { MessageBox.Show(ex.Message); }    
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void autofollowbtn_Click(object sender, EventArgs e)
-        {
-            if (IsLogin == false)
-            {
-                MessageBox.Show("Chưa đăng nhập");
-                return;
-            }
-
-            else
-            {
-                AutoFollow autoFollow = new AutoFollow();
-                autoFollow.Show(this);
-                this.Hide();
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void username_box_TextChanged(object sender, EventArgs e)
@@ -392,21 +376,121 @@ namespace InstagramTool
         {
             try
             {
-                if (driver == null || driver.WindowHandles.Count == 0)
+                if (driver != null && driver.WindowHandles.Count == 0)
                 {
                     IsLogin = false;
                 }
             }
             catch
             {
-                // Do not thing
+                IsLogin = false;
+                //DialogResult result = MessageBox.Show("Bạn có muốn chạy lại?", "Xảy ra lỗi khi chạy Browser", MessageBoxButtons.YesNo);
+                //if (result == DialogResult.Yes)
+                //    button1_Click(sender, e);
+                //else
+                //{
+                driver.Quit();
+                driver = null;
+                //}
             }
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void userfile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog getFile = new OpenFileDialog();
+            getFile.Filter = "Tệp văn bản (*.txt)|*.txt";
+            getFile.Title = "Chọn file txt chứa link user";
+            if (getFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    urlTextBox.Text = File.ReadAllText(getFile.FileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi nhập từ file. Vui lòng thử lại!");
+                }
+            }
+        }
+
+        private string PrintList(List<int> a)
+        {
+            string result = "";
+            foreach (int t in a)
+            {
+                result += $"{(t + 1).ToString()} ";
+            }
+            return result;
+        }
+        private List<string> removeErrorUrls(string[] a)
+        {
+            List<string> result = new List<string>();
+            foreach (var item in a)
+            {
+                if (item != null && item != "")
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        private void autoFollowbtn_Click(object sender, EventArgs e)
+        {
+            List<int> error = new List<int>();
+            if (Form1.IsLogin == false)
+            {
+                MessageBox.Show("Chưa đăng nhập");
+                return;
+            }
+            if (urlTextBox.Text == null || urlTextBox.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập url");
+                return;
+            }
+            string[] input = urlTextBox.Text.Split('\n');
+            List<string> urls = removeErrorUrls(input);
+            int indexError;
+            for (indexError = 0; indexError < urls.Count; indexError++)
+            {
+                try
+                {
+                    if (driver == null)
+                    {
+                        MessageBox.Show("Có lỗi xảy ra vui lòng thực hiện lại");
+                    }
+                    try
+                    {
+                        driver.Navigate().GoToUrl(urls[indexError]);
+                        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                        IWebElement followBtn = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Follow']")));
+
+                        followBtn.Click();
+                        Thread.Sleep(2000);
+                        error.Add(indexError);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Lỗi ở followbtn");
+                    }
+
+
+                }
+                catch (Exception)
+                {
+                    error.Add(indexError);
+                }
+            }
+            this.Activate();
+            if (error.Count != 0)
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count + "\nBị lỗi ở url: " + PrintList(error));
+            else
+                MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count);
         }
     }
 }

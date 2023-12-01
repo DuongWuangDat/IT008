@@ -198,6 +198,7 @@
             this.userfile.TabIndex = 15;
             this.userfile.Text = "Add user \r\n.txt file";
             this.userfile.UseVisualStyleBackColor = false;
+            this.userfile.Click += new System.EventHandler(this.userfile_Click);
             // 
             // button3
             // 
@@ -208,6 +209,7 @@
             this.button3.TabIndex = 16;
             this.button3.Text = "Add comment\r\n.txt file";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // toollabel
             // 

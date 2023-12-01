@@ -377,6 +377,10 @@ namespace InstagramTool
                 }
                 catch(Exception ex) { MessageBox.Show(ex.Message); }    
             }
+            catch(NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 

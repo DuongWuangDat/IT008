@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V117.Debugger;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,23 @@ namespace InstagramTool
         public static bool IsLogin = false;
         public static string username;
         public static string password;
-
+        private Random random;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private bool IsClosedBrowser(IWebDriver driver)
+        {
+            try
+            {
+                return (bool)((IJavaScriptExecutor)driver).ExecuteScript("return document.hidden");
+            }
+            catch (Exception)
+            {
+                return true;
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -58,11 +71,38 @@ namespace InstagramTool
                 login.Click();
                 try
                 {
-                    //var saveInfor = driver.FindElement(By.XPath("//button[contains(text(),'Save info')]"));
-                    var saveInfor = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(text(),'Save info')]")));
-                    IsLogin = true;
-                    this.Activate();
-                    MessageBox.Show("Đăng nhập thành công");
+                    By saveInfoBy = By.XPath("//button[contains(text(),'Save info')]");
+
+                    Func<IWebDriver, IWebElement> saveInfoCondition = (d) =>
+                    {
+                        try
+                        {
+                            if (d.WindowHandles.Count == 0)
+                            {
+                                return null; // No open window, return null
+                            }
+                            IWebElement element = d.FindElement(saveInfoBy);
+                            if (element == null)
+                                return null;
+                            else
+                                return element.Displayed ? element : null;
+                        }
+                        catch (Exception)
+                        {
+                            return null;
+                        }
+                    };
+
+                    IWebElement saveInfoElement = wait.Until(saveInfoCondition);
+
+                    if (saveInfoElement != null)
+                    {
+                        IsLogin = true;
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
                 catch
                 {
@@ -71,12 +111,11 @@ namespace InstagramTool
             }
             catch
             {
+                IsLogin = false;
                 this.Activate();
                 MessageBox.Show("Xảy ra lỗi khi đăng nhập");
             }
         }
-
-
 
         private void autotimbtn_Click(object sender, EventArgs e)
         {
@@ -358,6 +397,7 @@ namespace InstagramTool
 
         private void autocmtbtn_Click(object sender, EventArgs e)
         {
+            List<string> ListCmt = new List<string>();
             if (IsLogin == false)
             {
                 MessageBox.Show("Chưa đăng nhập");
@@ -365,9 +405,103 @@ namespace InstagramTool
             }
             else
             {
-                Form2 f2 = new Form2(this, driver);
-                this.Hide();
-                f2.Show();
+                foreach (string cmt in comment_RichTb.Lines)
+                    ListCmt.Add(cmt);
+                foreach (string url in urlTextBox.Lines)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                    driver.Navigate().GoToUrl(url);
+                    Thread.Sleep(2000);
+                    int flag = 1;
+                    IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
+                    listpost[0].Click();
+                    IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    while (flag == 1)
+                    {
+                        random = new Random();
+                        int i = random.Next(0, ListCmt.Count);
+                        string comment = ListCmt[i];
+                        try
+                        {
+                            var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                            commentbox.SendKeys(comment);
+                            Thread.Sleep(200);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                commentbox.SendKeys(comment);
+                                Thread.Sleep(200);
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+                                catch
+                                {
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    commentbox.SendKeys(comment);
+                                    Thread.Sleep(200);
+                                }
+
+                            }
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+
+                        Thread.Sleep(500);
+                        try
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        catch
+                        {
+                            var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                            btnpost.Click();
+                            Thread.Sleep(2000);
+                        }
+                        finally
+                        {
+                            Thread.Sleep(200);
+                        }
+                        try
+                        {
+
+                            nextbtn.Click();
+                            Thread.Sleep(500);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                                nextbtn.Click();
+                            }
+                            catch
+                            {
+                                flag = 0;
+                            }
+                        }
+
+                    }
+                    if (flag == 0)
+                    {
+                        MessageBox.Show("Đã bình luận xong");
+                    }
+                    else
+                    { MessageBox.Show("Đã dừng bình luận"); }
+
+                }
             }
 
         }
@@ -384,36 +518,10 @@ namespace InstagramTool
             catch
             {
                 IsLogin = false;
-                //DialogResult result = MessageBox.Show("Bạn có muốn chạy lại?", "Xảy ra lỗi khi chạy Browser", MessageBoxButtons.YesNo);
-                //if (result == DialogResult.Yes)
-                //    button1_Click(sender, e);
-                //else
-                //{
-                driver.Quit();
-                driver = null;
-                //}
-            }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userfile_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog getFile = new OpenFileDialog();
-            getFile.Filter = "Tệp văn bản (*.txt)|*.txt";
-            getFile.Title = "Chọn file txt chứa link user";
-            if (getFile.ShowDialog() == DialogResult.OK)
-            {
-                try
+                if (driver != null)
                 {
-                    urlTextBox.Text = File.ReadAllText(getFile.FileName);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Có lỗi xảy ra khi nhập từ file. Vui lòng thử lại!");
+                    driver.Quit();
+                    driver = null;
                 }
             }
         }
@@ -460,37 +568,116 @@ namespace InstagramTool
             {
                 try
                 {
-                    if (driver == null)
-                    {
-                        MessageBox.Show("Có lỗi xảy ra vui lòng thực hiện lại");
-                    }
-                    try
+                    if (driver != null)
                     {
                         driver.Navigate().GoToUrl(urls[indexError]);
-                        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                        IWebElement followBtn = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Follow']")));
+                        driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
+                        //if (driver != null && driver.WindowHandles.Count > 0)
+                        //{
+                        //    IWebElement followBtn = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Follow']")));
+                        //    followBtn.Click();
+                        //    Thread.Sleep(2000);
+                        //}
+                        //else
+                        //    throw new Exception();
+                        try
+                        {
+                            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                            By followBy = By.XPath("//*[text()='Follow']");
 
-                        followBtn.Click();
-                        Thread.Sleep(2000);
-                        error.Add(indexError);
+                            Func<IWebDriver, IWebElement> followCondition = (d) =>
+                            {
+                                try
+                                {
+                                    if (d.WindowHandles.Count == 0)
+                                    {
+                                        return null;
+                                    }
+                                    IWebElement element = d.FindElement(followBy);
+                                    if (element == null)
+                                        return null;
+                                    else
+                                        return element.Displayed ? element : null;
+                                }
+                                catch (Exception)
+                                {
+                                    return null;
+                                }
+                            };
+
+                            IWebElement followBtn = wait.Until(followCondition);
+
+                            if (followBtn != null)
+                            {
+                                followBtn.Click();
+                                Thread.Sleep(2000);
+                            }
+                            else
+                            {
+                                throw new Exception();
+                            }
+                        }
+                        catch
+                        {
+                            throw new Exception();
+                        }
                     }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Lỗi ở followbtn");
-                    }
-
-
                 }
                 catch (Exception)
                 {
                     error.Add(indexError);
                 }
             }
+            this.Focus();
             this.Activate();
             if (error.Count != 0)
                 MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count + "\nBị lỗi ở url: " + PrintList(error));
             else
                 MessageBox.Show("Thành công " + (urls.Count - error.Count) + "/" + urls.Count);
+
+        }
+
+        private void userfile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog userfile = new OpenFileDialog();
+            userfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            userfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (userfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = userfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    urlTextBox.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file user thành công");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog cmtfile = new OpenFileDialog();
+            cmtfile.Filter = "Text Files (*.txt)|*.txt"; // Bộ lọc file chỉ cho phép chọn file .txt
+            cmtfile.FilterIndex = 1; // Đặt bộ lọc mặc định
+            if (cmtfile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = cmtfile.FileName;
+                    string fileContent = File.ReadAllText(filePath);
+                    comment_RichTb.AppendText(fileContent);
+                    MessageBox.Show("Đã thêm file comment thành công");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể mở file: " + ex.Message);
+                }
+            }
         }
     }
 }

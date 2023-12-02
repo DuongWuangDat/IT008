@@ -35,8 +35,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.autotimbtn = new System.Windows.Forms.Button();
             this.autocmtbtn = new System.Windows.Forms.Button();
-            this.urlbox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.autofollowbtn = new System.Windows.Forms.Button();
             this.CrawlImage_btn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,9 +45,9 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toollabel = new System.Windows.Forms.Label();
+            this.maxlabel = new System.Windows.Forms.Label();
             this.curlabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.maxlabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,24 +123,6 @@
             this.autocmtbtn.UseVisualStyleBackColor = false;
             this.autocmtbtn.Click += new System.EventHandler(this.autocmtbtn_Click);
             // 
-            // urlbox
-            // 
-            this.urlbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.urlbox.Location = new System.Drawing.Point(557, 12);
-            this.urlbox.Name = "urlbox";
-            this.urlbox.Size = new System.Drawing.Size(268, 30);
-            this.urlbox.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(486, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 25);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Url";
-            // 
             // autofollowbtn
             // 
             this.autofollowbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -152,7 +132,7 @@
             this.autofollowbtn.TabIndex = 10;
             this.autofollowbtn.Text = "AutoFollow";
             this.autofollowbtn.UseVisualStyleBackColor = false;
-            this.autofollowbtn.Click += new System.EventHandler(this.autofollowbtn_Click);
+            this.autofollowbtn.Click += new System.EventHandler(this.autoFollowbtn_Click);
             // 
             // CrawlImage_btn
             // 
@@ -178,6 +158,7 @@
             // 
             // user_RichTb
             // 
+            this.user_RichTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_RichTb.Location = new System.Drawing.Point(245, 147);
             this.user_RichTb.Name = "user_RichTb";
             this.user_RichTb.Size = new System.Drawing.Size(579, 215);
@@ -186,6 +167,7 @@
             // 
             // comment_RichTb
             // 
+            this.comment_RichTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comment_RichTb.Location = new System.Drawing.Point(245, 373);
             this.comment_RichTb.Name = "comment_RichTb";
             this.comment_RichTb.Size = new System.Drawing.Size(579, 215);
@@ -247,6 +229,15 @@
             this.toollabel.Size = new System.Drawing.Size(0, 16);
             this.toollabel.TabIndex = 19;
             // 
+            // maxlabel
+            // 
+            this.maxlabel.AutoSize = true;
+            this.maxlabel.Location = new System.Drawing.Point(286, 10);
+            this.maxlabel.Name = "maxlabel";
+            this.maxlabel.Size = new System.Drawing.Size(32, 16);
+            this.maxlabel.TabIndex = 22;
+            this.maxlabel.Text = "max";
+            // 
             // curlabel
             // 
             this.curlabel.AllowDrop = true;
@@ -266,15 +257,6 @@
             this.label5.TabIndex = 21;
             this.label5.Text = "/";
             // 
-            // maxlabel
-            // 
-            this.maxlabel.AutoSize = true;
-            this.maxlabel.Location = new System.Drawing.Point(286, 10);
-            this.maxlabel.Name = "maxlabel";
-            this.maxlabel.Size = new System.Drawing.Size(32, 16);
-            this.maxlabel.TabIndex = 22;
-            this.maxlabel.Text = "max";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -288,8 +270,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.CrawlImage_btn);
             this.Controls.Add(this.autofollowbtn);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.urlbox);
             this.Controls.Add(this.autocmtbtn);
             this.Controls.Add(this.autotimbtn);
             this.Controls.Add(this.label2);
@@ -301,7 +281,6 @@
             this.Text = "Form1";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -318,8 +297,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button autotimbtn;
         private System.Windows.Forms.Button autocmtbtn;
-        private System.Windows.Forms.TextBox urlbox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button autofollowbtn;
         private System.Windows.Forms.Button CrawlImage_btn;
         private System.Windows.Forms.Label label4;

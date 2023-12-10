@@ -468,12 +468,6 @@ namespace InstagramTool
                         string comment = ListCmt[i];
                         try
                         {
-                            var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                            commentbox.SendKeys(comment);
-                            Thread.Sleep(200);
-                        }
-                        catch
-                        {
                             try
                             {
                                 var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
@@ -484,60 +478,72 @@ namespace InstagramTool
                             {
                                 try
                                 {
-                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
                                     commentbox.SendKeys(comment);
                                     Thread.Sleep(200);
                                 }
                                 catch
                                 {
-                                    var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                    commentbox.SendKeys(comment);
-                                    Thread.Sleep(200);
+                                    try
+                                    {
+                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                        commentbox.SendKeys(comment);
+                                        Thread.Sleep(200);
+                                    }
+                                    catch
+                                    {
+                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                        commentbox.SendKeys(comment);
+                                        Thread.Sleep(200);
+                                    }
+
                                 }
-
                             }
-                        }
-                        finally
-                        {
-                            Thread.Sleep(200);
-                        }
+                            finally
+                            {
+                                Thread.Sleep(200);
+                            }
 
-                        Thread.Sleep(500);
-                        try
-                        {
-                            var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
-                            btnpost.Click();
-                            Thread.Sleep(2000);
-                        }
-                        catch
-                        {
-                            var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
-                            btnpost.Click();
-                            Thread.Sleep(2000);
-                        }
-                        finally
-                        {
-                            Thread.Sleep(200);
-                        }
-                        try
-                        {
-
-                            nextbtn.Click();
                             Thread.Sleep(500);
-                        }
-                        catch
-                        {
                             try
                             {
-                                nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                                nextbtn.Click();
+                                var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                                btnpost.Click();
+                                Thread.Sleep(2000);
                             }
                             catch
                             {
-                                flag = 0;
+                                var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
+                                btnpost.Click();
+                                Thread.Sleep(2000);
+                            }
+                            finally
+                            {
+                                Thread.Sleep(200);
+                            }
+                            try
+                            {
+
+                                nextbtn.Click();
+                                Thread.Sleep(500);
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                                    nextbtn.Click();
+                                }
+                                catch
+                                {
+                                    flag = 0;
+                                }
                             }
                         }
-
+                        catch
+                        {
+                            break;
+                        }
                     }
                     if (flag == 0)
                     {

@@ -315,8 +315,13 @@ namespace InstagramTool
                     nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button/div"));
                 try
                 {
-
-                    while (nextImgButton.Displayed)
+                    bool check = false;
+                    try
+                    {
+                        check = nextImgButton.Displayed;
+                    }
+                    catch(Exception ex) { MessageBox.Show(ex.Message); }
+                    while (check)
                     {
                         try
                         {
@@ -367,6 +372,11 @@ namespace InstagramTool
                                 nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
                             else
                                 nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
+                            try
+                            {
+                                check = nextImgButton.Displayed;
+                            }
+                            catch(Exception ex) { MessageBox.Show(ex.Message); }
 
                         }
                         catch (NoSuchElementException)

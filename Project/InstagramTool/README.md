@@ -2,7 +2,7 @@
 
 [INSTAGRAM AUTOTOOL]
 
-![image](https://github.com/DuongWuangDat/IT008/assets/118280757/71703b4f-d6aa-469a-9890-2112fc8abe8d)
+<img src="https://github.com/DuongWuangDat/IT008/assets/118280757/71703b4f-d6aa-469a-9890-2112fc8abe8d" width="100" height="100">
 
 
 **Contributors**:

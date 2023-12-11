@@ -16,6 +16,7 @@
 **Supervisors**:
 
 - [Name - link to profile (GitHub/Email/Website))
+- Vũ Tuấn Hải - [Github](https://github.com/vutuanhai237)
 
 **Video demo**: Link to youtube video
 

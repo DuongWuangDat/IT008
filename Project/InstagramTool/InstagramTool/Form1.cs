@@ -376,7 +376,7 @@ namespace InstagramTool
                             {
                                 check = nextImgButton.Displayed;
                             }
-                            catch(Exception ex) { MessageBox.Show(ex.Message); }
+                            catch(NullReferenceException ex) { MessageBox.Show(ex.Message); }
 
                         }
                         catch (NoSuchElementException)

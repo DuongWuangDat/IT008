@@ -21,7 +21,24 @@
 
 **Description**: Instagram AutoTool là một ứng dụng thông minh được thiết kế đặc biệt để tối ưu hóa trải nghiệm sử dụng Instagram của bạn. Với những chức năng tự động tiên tiến, Instagram AutoTool giúp bạn tiết kiệm thời gian và nỗ lực trong việc tương tác và lấy ảnh của một danh sách user bằng tài khoản Instagram của mình.
 
-**How to use**: Provide a way to install or clone/use.
+**How to use**:
+
+- Clone (sử dụng git clone) từ link github (https://github.com/DuongWuangDat/IT008.git)
+- Vào folder project "InstagramTool" để chạy debug hoặc release (nếu debug bạn sẽ sử dụng được app ngay, nếu release bạn phải vào thư mục bin/Release để chạy file.exe)
+- Use:
+  - Login:
+    - Nhập username và password vào ô điền thông tin có sẵn, nhấn nút login để bắt đầu tự động đăng nhập (Bạn phải đăng nhập trước khi sử dụng các tính năng khác)
+  - Nhập file .txt:
+    - Nhấn vào nút nhập "Add user .txt file" bên cạnh ô trắng lớn đầu tiên để thêm danh sách user
+    - Nhấn vào nút nhập "Add comment .txt file" bên cạnh ô trắng lớn thứ hai để thêm danh sách comment (phục vụ cho auto comment)
+  - Auto tim:
+    - Nhấn vào nút chức năng "AutoTim" (Bạn phải đăng nhập trước và ô danh sách user không được để trống) và trải nghiệm nó
+  - Auto comment:
+    - Nhấn vào nút chức năng "AutoComment" (Bạn phải đăng nhập trước và ô danh sách user và comment không được để trống) và trải nghiệm nó
+  - Auto follow:
+    - Nhấn vào nút chức năng "AutoFollow" (Bạn phải đăng nhập trước và ô danh sách user không được để trống) và trải nghiệm nó
+  - Crawl image:
+    - Nhấn vào nút chức năng "CrawlImage" (Bạn phải đăng nhập trước và ô danh sách user không được để trống) và trải nghiệm nó
 
 **Additional information**: 
 

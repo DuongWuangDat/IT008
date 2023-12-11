@@ -8,7 +8,9 @@
 **Contributors**:
 
 - Leader: Dương Quang Đạt - 22520208 - [Github](https://github.com/DuongWuangDat)
-- Member: Nguyen Van B - 2252XXXX
+- Member: Nguyễn Đại Dương - 22520304
+          Trần Thành Đạt - 2252xxx
+          Hà Minh Đức - 2252xx
 
 **Supervisors**:
 

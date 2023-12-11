@@ -6,8 +6,7 @@
 
 **Contributors**:
 
-- [Role: Name - Student ID - Github link]
-- Leader: Nguyen Van A - 2152xxxx - [Github](https://github.com/vutuanhai237)
+- Leader: Dương Quang Đạt - 22520208 - [Github](https://github.com/DuongWuangDat)
 - Member: Nguyen Van B - 2252XXXX
 
 **Supervisors**:

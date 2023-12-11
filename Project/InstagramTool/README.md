@@ -42,7 +42,20 @@
 
 **Additional information**: 
 
-**Code of conducting**: Add your code of conducting
+**Code of conducting**: 
+
+- Mục tiêu:
+  - Dự án chúng ta cam kết tạo ra một môi trường làm việc tích cực và đối xử công bằng cho tất cả mọi người, không phụ thuộc vào giới tính, tình dục, chủng tộc, tôn giáo, quốc gia xuất xứ, tuổi tác, khả năng học, hay bất kỳ đặc điểm nào khác.
+- Nguyên tắc cơ bản
+  - Đối Xử Tôn Trọng: Mọi thành viên đều được yêu cầu đối xử với nhau với tôn trọng và sự chân thành.
+  - Ngôn Ngữ Tích Cực: Sử dụng ngôn ngữ tích cực và tránh sử dụng ngôn ngữ xúc phạm, tục tĩu hoặc đe doạ.
+  - Không Phân Biệt Đối Xử: Không phân biệt đối xử dựa trên giới tính, tình dục, chủng tộc, tôn giáo, quốc gia xuất xứ, tuổi tác, khả năng học, hoặc bất kỳ đặc điểm nào khác.
+  - An Toàn và Môi Trường Không Đe Doạ: Tạo ra một môi trường làm việc hoặc cộng đồng an toàn, không đe doạ hay gây hại cho bất kỳ thành viên nào.
+  - Giải Quyết Xung Đột: Hỗ trợ giải quyết xung đột một cách xây dựng và công bằng, thường thông qua giao tiếp trực tiếp và mở cửa.
+- Báo cáo vi phạm:
+  - Nếu bạn chứng kiến hoặc trải qua bất kỳ hành vi vi phạm Mã Nguyên Tắc Hành Vi này, vui lòng liên hệ với [Dương Quang Đạt](https://www.facebook.com/wangdat04).
+- Xử lý vi phạm:
+  - Mọi báo cáo vi phạm sẽ được xem xét và xử lý một cách nhanh chóng và công bằng. Các biện pháp có thể bao gồm cả cảnh báo, tạm khóa, hay loại bỏ thành viên từ dự án.
 
 **License**: 
 

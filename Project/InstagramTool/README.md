@@ -17,7 +17,7 @@
 
 - Vũ Tuấn Hải - [Github](https://github.com/vutuanhai237)
 
-**Video demo**: [Youtube](https://www.youtube.com/watch?v=TdPPdIfNPzs&ab_channel=CubeModder)
+**Video demo**: [Youtube](https://youtu.be/TdPPdIfNPzs)
 
 **Description**: Instagram AutoTool là một ứng dụng thông minh được thiết kế đặc biệt để tối ưu hóa trải nghiệm sử dụng Instagram của bạn. Với những chức năng tự động tiên tiến, Instagram AutoTool giúp bạn tiết kiệm thời gian và nỗ lực trong việc tương tác và lấy ảnh của một danh sách user bằng tài khoản Instagram của mình.
 

@@ -44,4 +44,6 @@
 
 **Code of conducting**: Add your code of conducting
 
-**License**: Add MIT/BSD-2 Clause/... license here
+**License**: 
+
+- Instagram AutoTool được phát hành dưới giấy phép MIT - Xem [LICENSE](LICENSE) để biết chi tiết.

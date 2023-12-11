@@ -15,12 +15,11 @@
 
 **Supervisors**:
 
-- [Name - link to profile (GitHub/Email/Website))
 - Vũ Tuấn Hải - [Github](https://github.com/vutuanhai237)
 
 **Video demo**: Link to youtube video
 
-**Description**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+**Description**: Instagram AutoTool là một ứng dụng thông minh được thiết kế đặc biệt để tối ưu hóa trải nghiệm sử dụng Instagram của bạn. Với những chức năng tự động tiên tiến, Instagram AutoTool giúp bạn tiết kiệm thời gian và nỗ lực trong việc tương tác và lấy ảnh của một danh sách user bằng tài khoản Instagram của mình.
 
 **How to use**: Provide a way to install or clone/use.
 

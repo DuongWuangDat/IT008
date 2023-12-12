@@ -383,11 +383,7 @@ namespace InstagramTool
                             else
                                 nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
                             if(postCount==1)
-                                try
-                                {
-                                    check = nextImgButton.Displayed;
-                                }
-                                catch(Exception ex) { MessageBox.Show(ex.Message); }
+                                check = nextImgButton.Displayed;
                             else
                                 try
                                 {

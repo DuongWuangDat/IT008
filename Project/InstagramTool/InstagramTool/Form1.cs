@@ -560,7 +560,9 @@ namespace InstagramTool
                         MessageBox.Show("Đã bình luận xong");
                     }
                     else
-                    { MessageBox.Show("Đã dừng bình luận"); }
+                    { 
+                        //MessageBox.Show("Đã dừng bình luận"); 
+                    }
                     curent++;
                     curlabel.Text = curent.ToString();
                     int value = (curent * 100) / max;

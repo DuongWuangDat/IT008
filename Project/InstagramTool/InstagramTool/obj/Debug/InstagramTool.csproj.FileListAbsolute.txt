@@ -82,7 +82,6 @@ C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTo
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.xml
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.AssemblyReference.cache
-C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form1.resources
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
 C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Properties.Resources.resources

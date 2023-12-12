@@ -249,9 +249,12 @@ namespace InstagramTool
             {
                 try
                 {
+                    
                     driver.Navigate().GoToUrl(line);
                 }
+                catch (NullReferenceException ex) { MessageBox.Show(ex.Message); }
                 catch (Exception ex) { MessageBox.Show(ex.Message); break; }
+        
                 Thread.Sleep(5000);
                 int postCount = 1;
                 IWebElement user = driver.FindElement(By.XPath("//header//section//h2"));
@@ -372,11 +375,20 @@ namespace InstagramTool
                                 nextImgButton = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]"));
                             else
                                 nextImgButton = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[1]/div/div[1]/div[2]/div/button[2]/div"));
-                            try
-                            {
-                                check = nextImgButton.Displayed;
-                            }
-                            catch(NullReferenceException ex) { MessageBox.Show(ex.Message); }
+                            if(postCount==1)
+                                try
+                                {
+                                    check = nextImgButton.Displayed;
+                                }
+                                catch(Exception ex) { MessageBox.Show(ex.Message); }
+                            else
+                                try
+                                {
+                                    check = nextImgButton.Displayed;
+                                }
+                                catch(NullReferenceException ex) { MessageBox.Show(ex.Message); }
+                       
+                                                   
 
                         }
                         catch (NoSuchElementException)

@@ -249,8 +249,15 @@ namespace InstagramTool
             {
                 try
                 {
-                    
-                    driver.Navigate().GoToUrl(line);
+                    if (driver != null)
+                    {
+                        driver.Navigate().GoToUrl(line);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Da tat drive");
+                        return;
+                    }
                 }
                 catch (NullReferenceException ex) { MessageBox.Show(ex.Message); }
                 catch (Exception ex) { MessageBox.Show(ex.Message); break; }
@@ -572,7 +579,9 @@ namespace InstagramTool
                         MessageBox.Show("Đã bình luận xong");
                     }
                     else
-                    { MessageBox.Show("Đã dừng bình luận"); }
+                    { 
+                        //MessageBox.Show("Đã dừng bình luận"); 
+                    }
                     curent++;
                     curlabel.Text = curent.ToString();
                     int value = (curent * 100) / max;

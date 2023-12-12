@@ -95,9 +95,7 @@ D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtr
 D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
 D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.AssemblyReference.cache
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form1.resources
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Properties.Resources.resources
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.GenerateResource.cache
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CoreCompileInputs.cache

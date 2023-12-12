@@ -464,20 +464,51 @@ namespace InstagramTool
                     ListCmt.Add(cmt);
                 foreach (string url in user_RichTb.Lines)
                 {
+                    
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
                     driver.Navigate().GoToUrl(url);
                     Thread.Sleep(2000);
+                    IWebElement nextbtn = null;
                     int flag = 1;
-                    IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
-                    listpost[0].Click();
-                    IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    try
+                    {
+                        IWebElement first_post = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[3]/div/div[1]/div[1]"));
+                        first_post.Click();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            IWebElement first_post = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/div[2]/div/div[1]/div[2]"));
+                            first_post.Click();
+                        }
+                        catch
+                        {
+                            flag = 0;
+                        }                       
+                    
+                    }
+                    try
+                    {
+                        nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                        }
+                        catch
+                        {
+                            Thread.Sleep(100);            
+                        }
+                    }
                     while (flag == 1)
                     {
                         random = new Random();
                         int i = random.Next(0, ListCmt.Count);
                         string comment = ListCmt[i];
-                        try
-                        {
+                       
                             try
                             {
                                 var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
@@ -490,10 +521,20 @@ namespace InstagramTool
                                 {
                                     var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
                                     commentbox.SendKeys(comment);
-                                    Thread.Sleep(200);
+                                    Thread.Sleep(100);
+                                 
                                 }
                                 catch
                                 {
+                                    try
+                                    {
+                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                        commentbox.SendKeys(comment);
+                                        Thread.Sleep(100);
+                                       
+                                    }
+                                    catch
+                                    {
                                     try
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
@@ -502,19 +543,19 @@ namespace InstagramTool
                                     }
                                     catch
                                     {
-                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        commentbox.SendKeys(comment);
-                                        Thread.Sleep(200);
+                                        Thread.Sleep(100);
+                                    }    
                                     }
-
                                 }
+                            finally
+                            {
+                                Thread.Sleep(100);
+                            }
                             }
                             finally
                             {
-                                Thread.Sleep(200);
+                            Thread.Sleep(200);
                             }
-
-                            Thread.Sleep(500);
                             try
                             {
                                 var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
@@ -523,44 +564,27 @@ namespace InstagramTool
                             }
                             catch
                             {
+                            try
+                            {
                                 var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
                                 btnpost.Click();
                                 Thread.Sleep(2000);
                             }
-                            finally
+                            catch
                             {
                                 Thread.Sleep(200);
                             }
+                            }
                             try
                             {
-
                                 nextbtn.Click();
-                                Thread.Sleep(500);
+                                Thread.Sleep(1000);
                             }
                             catch
                             {
-                                try
-                                {
-                                    nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                                    nextbtn.Click();
-                                }
-                                catch
-                                {
                                     flag = 0;
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            break;
-                        }
+                            }                     
                     }
-                    if (flag == 0)
-                    {
-                        MessageBox.Show("Đã bình luận xong");
-                    }
-                    else
-                    { MessageBox.Show("Đã dừng bình luận"); }
                     curent++;
                     curlabel.Text = curent.ToString();
                     int value = (curent * 100) / max;
@@ -571,7 +595,6 @@ namespace InstagramTool
                 maxlabel.Text = "";
                 progressBar1.Value = 0;
             }
-
         }
 
         private void Form1_Activated(object sender, EventArgs e)

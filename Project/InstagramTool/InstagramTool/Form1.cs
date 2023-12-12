@@ -259,8 +259,8 @@ namespace InstagramTool
                         return;
                     }
                 }
-                catch (NullReferenceException ex) { MessageBox.Show(ex.Message); }
-                catch (Exception ex) { MessageBox.Show(ex.Message); break; }
+                catch (NullReferenceException ex) {  }
+                catch (Exception ex) { break; }
         
                 Thread.Sleep(5000);
                 int postCount = 1;
@@ -290,16 +290,15 @@ namespace InstagramTool
                             SendKeys.Send("{ESC}");
                             break;
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+                        catch (Exception ex) { }
                     }
                 }
                 catch (NoSuchElementException)
                 {
                     //Post cuối cùng
                     EachImage(username, postCount, folderDialog);
-                    SendKeys.Send("{ESC}");
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex) {  }
                 curent++;
                 curlabel.Text = curent.ToString();
                 progressBar1.Value = (curent * 100) / max;
@@ -330,7 +329,7 @@ namespace InstagramTool
                     {
                         check = nextImgButton.Displayed;
                     }
-                    catch(Exception ex) { MessageBox.Show(ex.Message); }
+                    catch(Exception ex) {  }
                     while (check)
                     {
                         try
@@ -389,7 +388,7 @@ namespace InstagramTool
                                 {
                                     check = nextImgButton.Displayed;
                                 }
-                                catch(NullReferenceException ex) { MessageBox.Show(ex.Message); }
+                                catch(NullReferenceException ex) { }
                        
                                                    
 
@@ -414,7 +413,7 @@ namespace InstagramTool
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message); break;
+                                break;
                             }
                             break;
                         }
@@ -422,7 +421,7 @@ namespace InstagramTool
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    
                 }
             }
             catch (NoSuchElementException)
@@ -443,9 +442,9 @@ namespace InstagramTool
                         }
                     }
                 }
-                catch(Exception ex) { MessageBox.Show(ex.Message); }    
+                catch(Exception ex) {  }    
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            catch(Exception ex) {  }
         }
         private void username_box_TextChanged(object sender, EventArgs e)
         {

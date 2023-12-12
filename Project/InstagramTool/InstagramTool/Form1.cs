@@ -249,7 +249,15 @@ namespace InstagramTool
             {
                 try
                 {
-                    driver.Navigate().GoToUrl(line);
+                    if (driver != null)
+                    {
+                        driver.Navigate().GoToUrl(line);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Da tat drive");
+                        return;
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); break; }
                 Thread.Sleep(5000);

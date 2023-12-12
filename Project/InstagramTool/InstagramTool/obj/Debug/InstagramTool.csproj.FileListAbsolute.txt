@@ -39,8 +39,6 @@ D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\I
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CopyComplete
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
-D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
-D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\linux\selenium-manager
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\macos\selenium-manager
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\windows\selenium-manager.exe
@@ -63,11 +61,43 @@ B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\De
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CopyComplete
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
 B:\study\lap trinh truc quan\Do_an_TH\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
-D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtras.WaitHelpers.dll
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
 D:\Study Documents\Visual Programing\IT008\InstagramTool\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\linux\selenium-manager
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\macos\selenium-manager
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\windows\selenium-manager.exe
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\InstagramTool.exe.config
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\InstagramTool.exe
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\InstagramTool.pdb
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\System.Drawing.Common.dll
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.dll
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\System.Drawing.Common.xml
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.xml
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.AssemblyReference.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form1.resources
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Properties.Resources.resources
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.GenerateResource.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CoreCompileInputs.cache
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CopyComplete
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
+C:\Users\DAT\Desktop\Visual Programming\GitLabThucHanh\IT008\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\SeleniumExtras.WaitHelpers.dll
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.dll
+D:\mon hoc\LTTQ\IT008\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.AssemblyReference.cache
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form1.resources
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Properties.Resources.resources
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.GenerateResource.cache
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CoreCompileInputs.cache
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
+B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\linux\selenium-manager
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\macos\selenium-manager
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\selenium-manager\windows\selenium-manager.exe
@@ -83,13 +113,4 @@ B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\Instagram
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\System.Drawing.Common.xml
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.xml
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\bin\Debug\WebDriver.Support.xml
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.AssemblyReference.cache
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.AutoFollow.resources
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form1.resources
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Form2.resources
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.Properties.Resources.resources
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.GenerateResource.cache
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CoreCompileInputs.cache
 B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.csproj.CopyComplete
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.exe
-B:\study\lap trinh truc quan\IT008_Doan_Thuchanh\Project\InstagramTool\InstagramTool\obj\Debug\InstagramTool.pdb

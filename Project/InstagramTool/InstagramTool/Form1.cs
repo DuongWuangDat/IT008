@@ -259,8 +259,8 @@ namespace InstagramTool
                         return;
                     }
                 }
-                catch (NullReferenceException ex) { MessageBox.Show(ex.Message); }
-                catch (Exception ex) { MessageBox.Show(ex.Message); break; }
+                catch (NullReferenceException ex) {  }
+                catch (Exception ex) { break; }
         
                 Thread.Sleep(5000);
                 int postCount = 1;
@@ -290,21 +290,20 @@ namespace InstagramTool
                             SendKeys.Send("{ESC}");
                             break;
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+                        catch (Exception ex) { }
                     }
                 }
                 catch (NoSuchElementException)
                 {
                     //Post cuối cùng
                     EachImage(username, postCount, folderDialog);
-                    SendKeys.Send("{ESC}");
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex) {  }
                 curent++;
                 curlabel.Text = curent.ToString();
                 progressBar1.Value = (curent * 100) / max;
             }
-                    MessageBox.Show("Tải về thành công");
+            MessageBox.Show("Hoàn thành");
             curlabel.Text = "";
             maxlabel.Text = "";
             progressBar1.Value = 0;
@@ -330,7 +329,7 @@ namespace InstagramTool
                     {
                         check = nextImgButton.Displayed;
                     }
-                    catch(Exception ex) { MessageBox.Show(ex.Message); }
+                    catch(Exception ex) {  }
                     while (check)
                     {
                         try
@@ -389,7 +388,7 @@ namespace InstagramTool
                                 {
                                     check = nextImgButton.Displayed;
                                 }
-                                catch(NullReferenceException ex) { MessageBox.Show(ex.Message); }
+                                catch(NullReferenceException ex) { }
                        
                                                    
 
@@ -414,7 +413,7 @@ namespace InstagramTool
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message); break;
+                                break;
                             }
                             break;
                         }
@@ -422,7 +421,7 @@ namespace InstagramTool
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    
                 }
             }
             catch (NoSuchElementException)
@@ -443,9 +442,9 @@ namespace InstagramTool
                         }
                     }
                 }
-                catch(Exception ex) { MessageBox.Show(ex.Message); }    
+                catch(Exception ex) {  }    
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            catch(Exception ex) {  }
         }
         private void username_box_TextChanged(object sender, EventArgs e)
         {
@@ -479,20 +478,45 @@ namespace InstagramTool
                     ListCmt.Add(cmt);
                 foreach (string url in user_RichTb.Lines)
                 {
+                    
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
                     driver.Navigate().GoToUrl(url);
                     Thread.Sleep(2000);
+                    IWebElement nextbtn = null;
                     int flag = 1;
                     IList<IWebElement> listpost = driver.FindElements(By.XPath("//article//a"));
-                    listpost[0].Click();
-                    IWebElement nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                   
+                    try
+                    {
+                        listpost[0].Click();
+                    }
+                    catch
+                    {
+         
+                            flag = 0;                     
+                    
+                    }
+                    try
+                    {
+                        nextbtn = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"));
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
+                        }
+                        catch
+                        {
+                            Thread.Sleep(100);            
+                        }
+                    }
                     while (flag == 1)
                     {
                         random = new Random();
                         int i = random.Next(0, ListCmt.Count);
                         string comment = ListCmt[i];
-                        try
-                        {
+                       
                             try
                             {
                                 var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
@@ -505,10 +529,20 @@ namespace InstagramTool
                                 {
                                     var commentbox = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
                                     commentbox.SendKeys(comment);
-                                    Thread.Sleep(200);
+                                    Thread.Sleep(100);
+                                 
                                 }
                                 catch
                                 {
+                                    try
+                                    {
+                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
+                                        commentbox.SendKeys(comment);
+                                        Thread.Sleep(100);
+                                       
+                                    }
+                                    catch
+                                    {
                                     try
                                     {
                                         var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
@@ -517,19 +551,19 @@ namespace InstagramTool
                                     }
                                     catch
                                     {
-                                        var commentbox = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/textarea"));
-                                        commentbox.SendKeys(comment);
-                                        Thread.Sleep(200);
+                                        Thread.Sleep(100);
+                                    }    
                                     }
-
                                 }
+                            finally
+                            {
+                                Thread.Sleep(100);
+                            }
                             }
                             finally
                             {
-                                Thread.Sleep(200);
+                            Thread.Sleep(200);
                             }
-
-                            Thread.Sleep(500);
                             try
                             {
                                 var btnpost = driver.FindElement(By.XPath("/html/body/div[7]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
@@ -538,45 +572,26 @@ namespace InstagramTool
                             }
                             catch
                             {
+                            try
+                            {
                                 var btnpost = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[3]/div/form/div/div[2]"));
                                 btnpost.Click();
                                 Thread.Sleep(2000);
                             }
-                            finally
+                            catch
                             {
                                 Thread.Sleep(200);
                             }
+                            }
                             try
                             {
-
                                 nextbtn.Click();
-                                Thread.Sleep(500);
+                                Thread.Sleep(1000);
                             }
                             catch
                             {
-                                try
-                                {
-                                    nextbtn = driver.FindElement(By.XPath("/html/body/div[6]/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"));
-                                    nextbtn.Click();
-                                }
-                                catch
-                                {
                                     flag = 0;
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            break;
-                        }
-                    }
-                    if (flag == 0)
-                    {
-                        MessageBox.Show("Đã bình luận xong");
-                    }
-                    else
-                    { 
-                        //MessageBox.Show("Đã dừng bình luận"); 
+                            }                     
                     }
                     curent++;
                     curlabel.Text = curent.ToString();
@@ -588,7 +603,6 @@ namespace InstagramTool
                 maxlabel.Text = "";
                 progressBar1.Value = 0;
             }
-
         }
 
         private void Form1_Activated(object sender, EventArgs e)

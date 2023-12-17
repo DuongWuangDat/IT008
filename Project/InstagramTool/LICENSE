@@ -1,15 +1,25 @@
 MIT License
 
-Bản quyền © 2023 Tác giả:
+Copyright (c) 2023 Tác giả:
 - Dương Quang Đạt
 - Nguyễn Đại Dương
 - Trần Thành Đạt
 - Hà Minh Đức
 
-Giấy phép này cho phép mọi người có quyền tự do sử dụng, sao chép, sửa đổi, hợp nhất, công bố, phân phối, sublicense và / hoặc bán chúng, và / hoặc sao chép các sản phẩm phát sinh từ nó, miễn là:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-1. Bản quyền được sao chép và thông báo bản quyền được sao chép đi kèm với các bản sao hoặc phần quan trọng của nó.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-2. Không có bất kỳ giả định bảo đảm nào, có hoặc được tạo ra bởi phần mềm hoặc tác giả, cả về chất lượng và tính hợp lệ cho một mục đích cụ thể.
-
-Xem văn bản giấy phép đầy đủ tại https://opensource.org/license/mit/.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
